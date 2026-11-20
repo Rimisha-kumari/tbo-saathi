@@ -1,0 +1,1537 @@
+[
+ {
+  "id": "H001",
+  "name": "The Banyan Retreat Delhi",
+  "city": "Delhi",
+  "area": "Connaught Place",
+  "stars": 3,
+  "rating": 4.7,
+  "pricePerNightINR": 7650,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7650,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10350,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14550,
+    "available": 0
+   }
+  ],
+  "lat": 28.6366,
+  "lng": 77.219,
+  "images": []
+ },
+ {
+  "id": "H002",
+  "name": "Monsoon Bay Suites Delhi",
+  "city": "Delhi",
+  "area": "Aerocity",
+  "stars": 4,
+  "rating": 4.9,
+  "pricePerNightINR": 9850,
+  "amenities": [
+   "wifi",
+   "spa",
+   "airport_shuttle",
+   "parking",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9850,
+    "available": 5
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 13300,
+    "available": 2
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18700,
+    "available": 0
+   }
+  ],
+  "lat": 28.6021,
+  "lng": 77.1967,
+  "images": []
+ },
+ {
+  "id": "H003",
+  "name": "Saffron Courtyard Delhi",
+  "city": "Delhi",
+  "area": "Karol Bagh",
+  "stars": 4,
+  "rating": 4.5,
+  "pricePerNightINR": 8250,
+  "amenities": [
+   "breakfast",
+   "spa",
+   "gym",
+   "parking",
+   "family_rooms",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8250,
+    "available": 6
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11150,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15700,
+    "available": 2
+   }
+  ],
+  "lat": 28.5713,
+  "lng": 77.2001,
+  "images": []
+ },
+ {
+  "id": "H004",
+  "name": "The Banyan Retreat Delhi",
+  "city": "Delhi",
+  "area": "Connaught Place",
+  "stars": 5,
+  "rating": 4.2,
+  "pricePerNightINR": 11750,
+  "amenities": [
+   "wifi",
+   "pool",
+   "gym"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11750,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 15850,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 22350,
+    "available": 1
+   }
+  ],
+  "lat": 28.598,
+  "lng": 77.1923,
+  "images": []
+ },
+ {
+  "id": "H005",
+  "name": "Saffron Courtyard Mumbai",
+  "city": "Mumbai",
+  "area": "Colaba",
+  "stars": 3,
+  "rating": 3.7,
+  "pricePerNightINR": 8300,
+  "amenities": [
+   "wifi",
+   "pool",
+   "spa",
+   "gym",
+   "airport_shuttle",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8300,
+    "available": 8
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11200,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15750,
+    "available": 1
+   }
+  ],
+  "lat": 19.0893,
+  "lng": 72.8655,
+  "images": []
+ },
+ {
+  "id": "H006",
+  "name": "The Banyan Retreat Mumbai",
+  "city": "Mumbai",
+  "area": "Bandra",
+  "stars": 4,
+  "rating": 4.5,
+  "pricePerNightINR": 9500,
+  "amenities": [
+   "wifi",
+   "pool",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9500,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12850,
+    "available": 2
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18050,
+    "available": 0
+   }
+  ],
+  "lat": 19.0961,
+  "lng": 72.8457,
+  "images": []
+ },
+ {
+  "id": "H007",
+  "name": "Monsoon Bay Suites Mumbai",
+  "city": "Mumbai",
+  "area": "Andheri",
+  "stars": 4,
+  "rating": 3.9,
+  "pricePerNightINR": 9800,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "gym",
+   "parking",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9800,
+    "available": 6
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 13250,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18600,
+    "available": 0
+   }
+  ],
+  "lat": 19.112,
+  "lng": 72.8977,
+  "images": []
+ },
+ {
+  "id": "H008",
+  "name": "Saffron Courtyard Mumbai",
+  "city": "Mumbai",
+  "area": "Colaba",
+  "stars": 5,
+  "rating": 3.8,
+  "pricePerNightINR": 9600,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "gym",
+   "parking"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9600,
+    "available": 6
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12950,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18250,
+    "available": 2
+   }
+  ],
+  "lat": 19.0469,
+  "lng": 72.8683,
+  "images": []
+ },
+ {
+  "id": "H009",
+  "name": "Monsoon Bay Suites Goa",
+  "city": "Goa",
+  "area": "Calangute",
+  "stars": 3,
+  "rating": 4.3,
+  "pricePerNightINR": 7900,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7900,
+    "available": 2
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10650,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15000,
+    "available": 0
+   }
+  ],
+  "lat": 15.3846,
+  "lng": 73.8746,
+  "images": []
+ },
+ {
+  "id": "H010",
+  "name": "Saffron Courtyard Goa",
+  "city": "Goa",
+  "area": "Baga",
+  "stars": 4,
+  "rating": 4.5,
+  "pricePerNightINR": 8550,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "airport_shuttle",
+   "parking",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8550,
+    "available": 4
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11550,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 16250,
+    "available": 2
+   }
+  ],
+  "lat": 15.3546,
+  "lng": 73.8659,
+  "images": []
+ },
+ {
+  "id": "H011",
+  "name": "The Banyan Retreat Goa",
+  "city": "Goa",
+  "area": "Panaji",
+  "stars": 4,
+  "rating": 4.6,
+  "pricePerNightINR": 8400,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8400,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11350,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15950,
+    "available": 2
+   }
+  ],
+  "lat": 15.3956,
+  "lng": 73.8299,
+  "images": []
+ },
+ {
+  "id": "H012",
+  "name": "Monsoon Bay Suites Goa",
+  "city": "Goa",
+  "area": "Calangute",
+  "stars": 5,
+  "rating": 4.3,
+  "pricePerNightINR": 11550,
+  "amenities": [
+   "breakfast",
+   "pool",
+   "spa",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11550,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 15600,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 21950,
+    "available": 2
+   }
+  ],
+  "lat": 15.3645,
+  "lng": 73.8696,
+  "images": []
+ },
+ {
+  "id": "H013",
+  "name": "The Banyan Retreat Bengaluru",
+  "city": "Bengaluru",
+  "area": "MG Road",
+  "stars": 3,
+  "rating": 4.6,
+  "pricePerNightINR": 8200,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "spa",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8200,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11050,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15600,
+    "available": 0
+   }
+  ],
+  "lat": 13.0001,
+  "lng": 77.5677,
+  "images": []
+ },
+ {
+  "id": "H014",
+  "name": "Monsoon Bay Suites Bengaluru",
+  "city": "Bengaluru",
+  "area": "Indiranagar",
+  "stars": 4,
+  "rating": 4.3,
+  "pricePerNightINR": 7400,
+  "amenities": [
+   "breakfast",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7400,
+    "available": 5
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10000,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14050,
+    "available": 1
+   }
+  ],
+  "lat": 12.9615,
+  "lng": 77.5686,
+  "images": []
+ },
+ {
+  "id": "H015",
+  "name": "Saffron Courtyard Bengaluru",
+  "city": "Bengaluru",
+  "area": "Whitefield",
+  "stars": 4,
+  "rating": 4,
+  "pricePerNightINR": 10000,
+  "amenities": [
+   "wifi",
+   "pool",
+   "spa",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 10000,
+    "available": 6
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 13500,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 19000,
+    "available": 0
+   }
+  ],
+  "lat": 12.9486,
+  "lng": 77.5805,
+  "images": []
+ },
+ {
+  "id": "H016",
+  "name": "The Banyan Retreat Bengaluru",
+  "city": "Bengaluru",
+  "area": "MG Road",
+  "stars": 5,
+  "rating": 3.8,
+  "pricePerNightINR": 8950,
+  "amenities": [
+   "breakfast",
+   "airport_shuttle",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8950,
+    "available": 4
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12100,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 17000,
+    "available": 2
+   }
+  ],
+  "lat": 12.9762,
+  "lng": 77.5644,
+  "images": []
+ },
+ {
+  "id": "H017",
+  "name": "Saffron Courtyard Chennai",
+  "city": "Chennai",
+  "area": "T. Nagar",
+  "stars": 3,
+  "rating": 3.9,
+  "pricePerNightINR": 6600,
+  "amenities": [
+   "wifi",
+   "pool",
+   "spa",
+   "airport_shuttle",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 6600,
+    "available": 2
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 8900,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 12550,
+    "available": 1
+   }
+  ],
+  "lat": 13.0588,
+  "lng": 80.2645,
+  "images": []
+ },
+ {
+  "id": "H018",
+  "name": "The Banyan Retreat Chennai",
+  "city": "Chennai",
+  "area": "Mylapore",
+  "stars": 4,
+  "rating": 4.3,
+  "pricePerNightINR": 8450,
+  "amenities": [
+   "breakfast",
+   "pool",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "veg_kitchen",
+   "family_rooms",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8450,
+    "available": 7
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11400,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 16050,
+    "available": 1
+   }
+  ],
+  "lat": 13.0611,
+  "lng": 80.2642,
+  "images": []
+ },
+ {
+  "id": "H019",
+  "name": "Monsoon Bay Suites Chennai",
+  "city": "Chennai",
+  "area": "OMR",
+  "stars": 4,
+  "rating": 3.8,
+  "pricePerNightINR": 10350,
+  "amenities": [
+   "wifi",
+   "pool",
+   "gym",
+   "parking",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 10350,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 13950,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 19650,
+    "available": 1
+   }
+  ],
+  "lat": 13.0444,
+  "lng": 80.2528,
+  "images": []
+ },
+ {
+  "id": "H020",
+  "name": "Saffron Courtyard Chennai",
+  "city": "Chennai",
+  "area": "T. Nagar",
+  "stars": 5,
+  "rating": 4.5,
+  "pricePerNightINR": 11350,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11350,
+    "available": 2
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 15300,
+    "available": 2
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 21550,
+    "available": 0
+   }
+  ],
+  "lat": 13.0821,
+  "lng": 80.3037,
+  "images": []
+ },
+ {
+  "id": "H021",
+  "name": "Monsoon Bay Suites Hyderabad",
+  "city": "Hyderabad",
+  "area": "Banjara Hills",
+  "stars": 3,
+  "rating": 3.8,
+  "pricePerNightINR": 8300,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "parking"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8300,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11200,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15750,
+    "available": 0
+   }
+  ],
+  "lat": 17.4295,
+  "lng": 78.5181,
+  "images": []
+ },
+ {
+  "id": "H022",
+  "name": "Saffron Courtyard Hyderabad",
+  "city": "Hyderabad",
+  "area": "HITEC City",
+  "stars": 4,
+  "rating": 4.8,
+  "pricePerNightINR": 7750,
+  "amenities": [
+   "breakfast",
+   "spa",
+   "airport_shuttle",
+   "family_rooms",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7750,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10450,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14750,
+    "available": 1
+   }
+  ],
+  "lat": 17.4107,
+  "lng": 78.4883,
+  "images": []
+ },
+ {
+  "id": "H023",
+  "name": "The Banyan Retreat Hyderabad",
+  "city": "Hyderabad",
+  "area": "Charminar",
+  "stars": 4,
+  "rating": 4,
+  "pricePerNightINR": 8150,
+  "amenities": [
+   "wifi",
+   "spa",
+   "gym",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8150,
+    "available": 7
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 11000,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 15500,
+    "available": 2
+   }
+  ],
+  "lat": 17.369,
+  "lng": 78.4983,
+  "images": []
+ },
+ {
+  "id": "H024",
+  "name": "Monsoon Bay Suites Hyderabad",
+  "city": "Hyderabad",
+  "area": "Banjara Hills",
+  "stars": 5,
+  "rating": 4.2,
+  "pricePerNightINR": 11000,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "gym",
+   "airport_shuttle",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11000,
+    "available": 8
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 14850,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 20900,
+    "available": 0
+   }
+  ],
+  "lat": 17.3956,
+  "lng": 78.4557,
+  "images": []
+ },
+ {
+  "id": "H025",
+  "name": "The Banyan Retreat Kolkata",
+  "city": "Kolkata",
+  "area": "Park Street",
+  "stars": 3,
+  "rating": 4.3,
+  "pricePerNightINR": 6100,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "parking"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 6100,
+    "available": 2
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 8250,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 11600,
+    "available": 2
+   }
+  ],
+  "lat": 22.5369,
+  "lng": 88.358,
+  "images": []
+ },
+ {
+  "id": "H026",
+  "name": "Monsoon Bay Suites Kolkata",
+  "city": "Kolkata",
+  "area": "Salt Lake",
+  "stars": 4,
+  "rating": 3.6,
+  "pricePerNightINR": 9400,
+  "amenities": [
+   "breakfast",
+   "pool",
+   "gym",
+   "airport_shuttle",
+   "parking",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9400,
+    "available": 5
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12700,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 17850,
+    "available": 0
+   }
+  ],
+  "lat": 22.5509,
+  "lng": 88.3899,
+  "images": []
+ },
+ {
+  "id": "H027",
+  "name": "Saffron Courtyard Kolkata",
+  "city": "Kolkata",
+  "area": "Esplanade",
+  "stars": 4,
+  "rating": 4.5,
+  "pricePerNightINR": 7550,
+  "amenities": [
+   "wifi",
+   "pool",
+   "spa",
+   "gym"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7550,
+    "available": 4
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10200,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14350,
+    "available": 0
+   }
+  ],
+  "lat": 22.5871,
+  "lng": 88.3605,
+  "images": []
+ },
+ {
+  "id": "H028",
+  "name": "The Banyan Retreat Kolkata",
+  "city": "Kolkata",
+  "area": "Park Street",
+  "stars": 5,
+  "rating": 4.8,
+  "pricePerNightINR": 9650,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "spa",
+   "airport_shuttle",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9650,
+    "available": 8
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 13050,
+    "available": 2
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18350,
+    "available": 1
+   }
+  ],
+  "lat": 22.6046,
+  "lng": 88.359,
+  "images": []
+ },
+ {
+  "id": "H029",
+  "name": "Saffron Courtyard Jaipur",
+  "city": "Jaipur",
+  "area": "Pink City",
+  "stars": 3,
+  "rating": 3.8,
+  "pricePerNightINR": 7600,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "gym",
+   "parking"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7600,
+    "available": 8
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10250,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14450,
+    "available": 0
+   }
+  ],
+  "lat": 26.9121,
+  "lng": 75.7692,
+  "images": []
+ },
+ {
+  "id": "H030",
+  "name": "The Banyan Retreat Jaipur",
+  "city": "Jaipur",
+  "area": "C-Scheme",
+  "stars": 4,
+  "rating": 3.7,
+  "pricePerNightINR": 7850,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "spa",
+   "gym",
+   "parking",
+   "veg_kitchen",
+   "family_rooms"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 7850,
+    "available": 3
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 10600,
+    "available": 3
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 14900,
+    "available": 0
+   }
+  ],
+  "lat": 26.8975,
+  "lng": 75.7944,
+  "images": []
+ },
+ {
+  "id": "H031",
+  "name": "Monsoon Bay Suites Jaipur",
+  "city": "Jaipur",
+  "area": "Amer Road",
+  "stars": 4,
+  "rating": 3.7,
+  "pricePerNightINR": 8900,
+  "amenities": [
+   "pool",
+   "spa",
+   "gym",
+   "airport_shuttle",
+   "family_rooms",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 8900,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12000,
+    "available": 2
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 16900,
+    "available": 1
+   }
+  ],
+  "lat": 26.9179,
+  "lng": 75.8046,
+  "images": []
+ },
+ {
+  "id": "H032",
+  "name": "Saffron Courtyard Jaipur",
+  "city": "Jaipur",
+  "area": "Pink City",
+  "stars": 5,
+  "rating": 4.1,
+  "pricePerNightINR": 11200,
+  "amenities": [
+   "breakfast",
+   "pool",
+   "gym",
+   "veg_kitchen",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11200,
+    "available": 7
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 15100,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 21300,
+    "available": 2
+   }
+  ],
+  "lat": 26.9274,
+  "lng": 75.8072,
+  "images": []
+ },
+ {
+  "id": "H033",
+  "name": "Monsoon Bay Suites Kochi",
+  "city": "Kochi",
+  "area": "Fort Kochi",
+  "stars": 3,
+  "rating": 3.8,
+  "pricePerNightINR": 6650,
+  "amenities": [
+   "wifi",
+   "pool",
+   "airport_shuttle",
+   "parking"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 6650,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 9000,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 12650,
+    "available": 2
+   }
+  ],
+  "lat": 9.9633,
+  "lng": 76.2389,
+  "images": []
+ },
+ {
+  "id": "H034",
+  "name": "Saffron Courtyard Kochi",
+  "city": "Kochi",
+  "area": "Marine Drive",
+  "stars": 4,
+  "rating": 4.6,
+  "pricePerNightINR": 9500,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "spa",
+   "parking",
+   "veg_kitchen"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9500,
+    "available": 9
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12850,
+    "available": 4
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 18050,
+    "available": 2
+   }
+  ],
+  "lat": 9.8966,
+  "lng": 76.2478,
+  "images": []
+ },
+ {
+  "id": "H035",
+  "name": "The Banyan Retreat Kochi",
+  "city": "Kochi",
+  "area": "Edappally",
+  "stars": 4,
+  "rating": 4.9,
+  "pricePerNightINR": 9400,
+  "amenities": [
+   "spa",
+   "wifi"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 9400,
+    "available": 2
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 12700,
+    "available": 5
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 17850,
+    "available": 2
+   }
+  ],
+  "lat": 9.9611,
+  "lng": 76.2938,
+  "images": []
+ },
+ {
+  "id": "H036",
+  "name": "Monsoon Bay Suites Kochi",
+  "city": "Kochi",
+  "area": "Fort Kochi",
+  "stars": 5,
+  "rating": 4.3,
+  "pricePerNightINR": 11300,
+  "amenities": [
+   "wifi",
+   "breakfast",
+   "pool",
+   "gym",
+   "airport_shuttle",
+   "veg_kitchen"
+  ],
+  "roomTypes": [
+   {
+    "code": "STD",
+    "name": "Standard Room",
+    "maxGuests": 2,
+    "priceINR": 11300,
+    "available": 7
+   },
+   {
+    "code": "DLX",
+    "name": "Deluxe Room",
+    "maxGuests": 3,
+    "priceINR": 15250,
+    "available": 1
+   },
+   {
+    "code": "FAM",
+    "name": "Family Suite",
+    "maxGuests": 4,
+    "priceINR": 21450,
+    "available": 1
+   }
+  ],
+  "lat": 9.9426,
+  "lng": 76.2326,
+  "images": []
+ }
+]

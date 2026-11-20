@@ -251,7 +251,7 @@ export function Consultant() {
   ];
 
   return (
-    <div className="flex h-dvh flex-col">
+    <div className="flex h-dvh flex-col overflow-hidden">
       <TopBar
         provider={provider}
         lang={lang}
@@ -274,20 +274,22 @@ export function Consultant() {
         onClearBudget={() => setBudget(null)}
       />
 
-      <div className="flex min-h-0 flex-1 lg:gap-3 lg:p-3">
+      <div className="flex min-h-0 flex-1 overflow-hidden lg:gap-3 lg:p-3">
         {/* Left: avatar + conversation */}
-        <section className={`${view === "chat" ? "flex" : "hidden"} min-h-0 w-full flex-col border-line bg-card lg:flex lg:w-[440px] lg:shrink-0 lg:rounded-2xl lg:border`}>
-          <div className="flex items-center gap-3 border-b border-line px-3 py-2 lg:block lg:py-3">
+        <section className={`${view === "chat" ? "flex" : "hidden"} min-h-0 w-full flex-col border-line bg-card lg:flex lg:w-[min(440px,40vw)] lg:shrink-0 lg:overflow-hidden lg:rounded-2xl lg:border`}>
+          <div className="shrink-0 border-b border-line px-3 py-2">
             <AvatarStage expression={expression} lip={lip} voiceLabel={voiceLabel} />
           </div>
           <ChatPanel messages={chat.messages} greeting={t.greeting} suggestions={t.suggestions} onSend={(s) => submit(s)} busy={busy} handlers={handlers} />
-          <DemoBar chips={chips} />
+          <div className="shrink-0">
+            <DemoBar chips={chips} />
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               submit(input);
             }}
-            className="flex items-center gap-2 border-t border-line p-2.5"
+            className="flex shrink-0 items-center gap-2 border-t border-line p-2.5"
           >
             <MicButton listening={listening} supported={micOk} disabled={busy} onToggle={toggleMic} />
             <input
@@ -305,7 +307,7 @@ export function Consultant() {
         </section>
 
         {/* Right: trip workspace */}
-        <section className={`${view === "workspace" ? "flex" : "hidden"} min-h-0 flex-1 flex-col bg-background lg:flex lg:rounded-2xl lg:border lg:border-line`}>
+        <section className={`${view === "workspace" ? "flex" : "hidden"} min-h-0 min-w-0 flex-1 flex-col bg-background lg:flex lg:overflow-hidden lg:rounded-2xl lg:border lg:border-line`}>
           <Workspace tab={ws.tab} setTab={ws.setTab} b2b={b2b.enabled} counts={{ bookings: ws.bookings.filter((b) => b.status === "confirmed").length }}>
             {ws.tab === "compare" && <CompareTab data={ws.compare} prefs={prefKeys} onSelect={(text, display) => ui(text, display)} disabled={busy} />}
             {ws.tab === "itinerary" && (

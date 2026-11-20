@@ -46,6 +46,14 @@ export function Avatar({ expression, lip, className }: { expression: Expression;
     let nextBlink = performance.now() + 1800;
     let blinkStart = -1;
     let raf = 0;
+    // Gentle pointer-follow for eyes and head (-1..1 across the viewport).
+    const ptr = { x: 0, y: 0 };
+    const onMove = (e: PointerEvent) => {
+      ptr.x = (e.clientX / window.innerWidth) * 2 - 1;
+      ptr.y = (e.clientY / window.innerHeight) * 2 - 1;
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    const look = { x: 0, y: 0 };
 
     const tick = (now: number) => {
       const target = POSES[exprRef.current];
@@ -67,14 +75,18 @@ export function Avatar({ expression, lip, className }: { expression: Expression;
       const idleSway = exprRef.current === "idle" ? Math.sin(now / 2300) * 1.2 : 0;
       const speakNod = lip.active ? Math.sin(now / 180) * 0.8 : 0;
 
-      head.current?.setAttribute("transform", `translate(0 ${breath + speakNod}) rotate(${cur.headTilt + idleSway} 120 200)`);
+      look.x = lerp(look.x, ptr.x, 0.08);
+      look.y = lerp(look.y, ptr.y, 0.08);
+      head.current?.setAttribute("transform", `translate(${look.x * 2} ${breath + speakNod + look.y * 1.5}) rotate(${cur.headTilt + idleSway + look.x * 2.5} 120 200)`);
       browL.current?.setAttribute("transform", `translate(0 ${cur.browY}) rotate(${-cur.browTilt} 99 94)`);
       browR.current?.setAttribute("transform", `translate(0 ${cur.browY}) rotate(${cur.browTilt} 141 94)`);
       const sy = Math.max(0.05, cur.eyeOpen * blink);
       eyeL.current?.setAttribute("transform", `translate(99 110) scale(1 ${sy}) translate(-99 -110)`);
       eyeR.current?.setAttribute("transform", `translate(141 110) scale(1 ${sy}) translate(-141 -110)`);
-      irisL.current?.setAttribute("transform", `translate(${cur.gazeX} ${cur.gazeY})`);
-      irisR.current?.setAttribute("transform", `translate(${cur.gazeX} ${cur.gazeY})`);
+      const gx = cur.gazeX + look.x * 2.6;
+      const gy = cur.gazeY + look.y * 1.6;
+      irisL.current?.setAttribute("transform", `translate(${gx} ${gy})`);
+      irisR.current?.setAttribute("transform", `translate(${gx} ${gy})`);
 
       const p = mouthPaths(mouthOpen, m.shape, cur.smile);
       mouthOuter.current?.setAttribute("d", p.outer);
@@ -86,7 +98,10 @@ export function Avatar({ expression, lip, className }: { expression: Expression;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", onMove);
+    };
   }, [lip]);
 
   const pose = POSES[expression];
@@ -96,7 +111,7 @@ export function Avatar({ expression, lip, className }: { expression: Expression;
       viewBox="0 0 240 260"
       role="img"
       aria-label={`Saathi avatar, ${expression}`}
-      className={`h-auto w-full select-none ${className ?? ""}`}
+      className={`h-full w-full select-none ${className ?? ""}`}
     >
       <defs>
         <radialGradient id="halo" cx="50%" cy="45%" r="55%">

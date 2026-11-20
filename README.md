@@ -17,7 +17,7 @@ Then open http://localhost:3000.
 
 ## Features
 
-- **3D avatar:** a procedural Three.js character with blinking, dynamic brows, mouse-follow head, rim lighting, an aura that changes colour per state and real-time lip-sync. A **3D/2D** toggle switches to the 2D avatar, which also takes over automatically when WebGL isn't available.
+- **Avatar:** an instant 2D SVG avatar by default, with blinking, dynamic brows, pointer-follow eyes, an aura that changes colour per state and real-time lip-sync. An optional **3D** mode (procedural Three.js) swaps in only once it has rendered, and stays on 2D if WebGL is unavailable.
 - **True language switching:** typing or speaking in another language switches both the reply language and the voice locale.
 - **Workspace tabs:**
   - **Compare:** side-by-side flights and hotels.

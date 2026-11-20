@@ -22,6 +22,8 @@ const GOLD = "#e0a82e";
 interface Props {
   expression: Expression;
   lip: LipSync;
+  /** Called once the first frame has rendered, so the stage can swap 2D → 3D without a loading state. */
+  onReady?: () => void;
 }
 
 const damp = THREE.MathUtils.damp;
@@ -73,7 +75,8 @@ function Eye({ side, eyeRef, irisRef }: { side: 1 | -1; eyeRef: React.RefObject<
   );
 }
 
-function Character({ expression, lip }: Props) {
+function Character({ expression, lip, onReady }: Props) {
+  const ready = useRef(false);
   const head = useRef<THREE.Group>(null);
   const browL = useRef<THREE.Mesh>(null);
   const browR = useRef<THREE.Mesh>(null);
@@ -95,6 +98,10 @@ function Character({ expression, lip }: Props) {
   const tmpColor = useMemo(() => new THREE.Color(), []);
 
   useFrame((state, delta) => {
+    if (!ready.current) {
+      ready.current = true;
+      onReady?.();
+    }
     const t = state.clock.elapsedTime;
     const pose = POSES[expression];
     const c = cur.current;
@@ -323,16 +330,16 @@ function Character({ expression, lip }: Props) {
   );
 }
 
-export default function Avatar3D({ expression, lip }: Props) {
+export default function Avatar3D({ expression, lip, onReady }: Props) {
   return (
     <Canvas
       camera={{ position: [0, -0.35, 5.6], fov: 32 }}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       aria-label={`Saathi 3D avatar, ${expression}`}
       role="img"
     >
-      <Character expression={expression} lip={lip} />
+      <Character expression={expression} lip={lip} onReady={onReady} />
     </Canvas>
   );
 }

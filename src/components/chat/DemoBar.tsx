@@ -11,7 +11,7 @@ export interface DemoChip {
 /** One-click hackathon demo triggers above the chat input. */
 export function DemoBar({ chips }: { chips: DemoChip[] }) {
   return (
-    <div className="flex gap-1.5 overflow-x-auto px-3 pb-2 [scrollbar-width:none]" aria-label="Demo shortcuts">
+    <div className="flex gap-1.5 overflow-x-auto px-3 py-1.5 [scrollbar-width:none] lg:flex-wrap lg:overflow-visible" aria-label="Demo shortcuts">
       {chips.map((c) => (
         <button
           key={c.label}

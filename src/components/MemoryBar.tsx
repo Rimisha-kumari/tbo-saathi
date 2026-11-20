@@ -15,7 +15,7 @@ export function MemoryBar({
   onClearBudget: () => void;
 }) {
   return (
-    <div className="flex items-center gap-1.5 overflow-x-auto px-3 py-1.5 text-xs [scrollbar-width:none]" aria-label="Remembered preferences">
+    <div className="flex shrink-0 items-center gap-1.5 overflow-x-auto px-3 py-1.5 text-xs [scrollbar-width:none]" aria-label="Remembered preferences">
       <span className="shrink-0 font-semibold text-muted">🧠 Remembered:</span>
       {!prefs.length && !budgetINR && <span className="shrink-0 text-muted">say things like “window seat”, “veg”, “4-star”, “budget ₹50k”</span>}
       {budgetINR && (

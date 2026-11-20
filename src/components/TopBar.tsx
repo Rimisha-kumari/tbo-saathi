@@ -37,7 +37,7 @@ export function TopBar({
   onVoice: () => void;
 }) {
   return (
-    <header className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-line bg-card px-3 py-2">
+    <header className="flex shrink-0 flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-line bg-card px-3 py-2">
       <div className="mr-auto flex items-center gap-2">
         <div className="text-lg leading-none font-bold tracking-tight">
           TBO <span className="text-brand">Saathi</span>

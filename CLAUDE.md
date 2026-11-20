@@ -8,7 +8,7 @@ This Next.js version has breaking changes. Read `node_modules/next/dist/docs/` b
 ## Guardrails (non-negotiable)
 
 1. **One repo, no separate backend.** All server logic lives in App Router route handlers (`/api/chat`, `/api/travel`, `/api/speech`). Mock data is static JSON plus an in-memory store. There is no database.
-2. **Self-contained avatar, 3D by default with a 2D fallback.** `Avatar3D.tsx` is a procedural Three.js character (`@react-three/fiber` + `drei`). It uses no `.vrm`, GLTF, HDR or other binary or network assets. Load it only through `next/dynamic` with `{ ssr: false }` from a client component (`AvatarStage.tsx`). The 2D SVG avatar (`Avatar.tsx`) is the fallback: the 3D/2D toggle pill, no WebGL, or a render error switches to it.
+2. **Self-contained avatar, 2D by default with optional 3D.** The 2D SVG avatar (`Avatar.tsx`) is the default. It is server-rendered, appears at first paint and needs no assets or WebGL. 3D (`Avatar3D.tsx`, procedural Three.js via `@react-three/fiber` + `drei`, no `.vrm`/GLTF/HDR or network assets) is opt-in through the 2D/3D pill. `AvatarStage.tsx` loads it with `next/dynamic({ ssr: false, loading: () => null })`, mounts it invisibly over the 2D avatar, and reveals it only after `onReady` (its first rendered frame). It stays on 2D if WebGL is missing, the scene throws, or it isn't ready within 5 s. Never show a loading placeholder for the avatar.
    - Expressions: `idle | listening | thinking | speaking | concerned`, shown through face pose and aura/rim-light colour (`expressions.ts`).
    - Lip-sync: one `LipSync` driver feeds both avatars. It uses `SpeechSynthesisUtterance` `boundary` events with a text-timing fallback, and `AnalyserNode` amplitude when Sarvam/Bhashini audio plays.
 3. **Zero-key speech and AI by default.** Use the browser Web Speech API (`SpeechRecognition`/`webkitSpeechRecognition` and `speechSynthesis`). Languages (`lib/lang.ts`): `en`, `hi`, `hinglish`, `ta`, `te`, `bn`, each mapped to a TTS locale, an STT locale and a reply instruction. Voices are picked only after `voiceschanged`, and only from the language's own locale. Sarvam AI and Bhashini are optional and turn on only when their env keys are set. With no LLM key, the Smart Demo brain answers. The UI must work with no keys at all.
@@ -24,9 +24,9 @@ src/
     api/travel/route.ts      # GET mock data (?op=flights|hotels|availability|itinerary|booking|bookings|weather|extras); POST = confirmation gate
     api/speech/route.ts      # GET active provider; POST TTS via Sarvam/Bhashini (204 = use browser voice)
   components/
-    Consultant.tsx           # split screen: top bar + memory bar, avatar/chat (left), workspace tabs (right)
+    Consultant.tsx           # split screen (h-dvh, page never scrolls): top bar + memory bar, avatar/chat (left), workspace tabs (right)
     TopBar.tsx, MemoryBar.tsx
-    avatar/                  # AvatarStage (3D/2D toggle, dynamic ssr:false), Avatar3D, Avatar (2D SVG), useLipSync, expressions
+    avatar/                  # AvatarStage (2D default, optional 3D swapped in after first frame), Avatar (2D SVG), Avatar3D, useLipSync, expressions
     chat/                    # ChatPanel, ConfirmCard (Confirm ✅ / Edit ✏️ gate), DisruptionCard, DemoBar
     workspace/               # Workspace tabs: CompareTab, ItineraryTab (weather, budget meter, B2B pricing), BookingsTab, ClientItinerary
     voice/                   # MicButton, LanguagePicker

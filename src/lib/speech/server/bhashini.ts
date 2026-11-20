@@ -1,5 +1,5 @@
 import "server-only";
-import type { Lang } from "@/lib/types";
+import type { Locale } from "@/lib/lang";
 
 /**
  * Bhashini (ULCA / Dhruva) text-to-speech. Enabled when BHASHINI_USER_ID,
@@ -47,7 +47,7 @@ async function resolve(src: string): Promise<Resolved> {
   return resolved;
 }
 
-export async function bhashiniTts(text: string, lang: Lang): Promise<Uint8Array> {
+export async function bhashiniTts(text: string, lang: Locale): Promise<Uint8Array> {
   const src = lang.slice(0, 2);
   const r = await resolve(src);
   const res = await fetch(r.endpoint, {

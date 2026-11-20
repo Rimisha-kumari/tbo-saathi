@@ -1,15 +1,16 @@
 "use client";
 /**
- * Client speech facade. Default: browser Web Speech (zero keys). When the
- * server reports Sarvam/Bhashini is configured, TTS audio comes from
+ * Client speech facade. Default: browser Web Speech (zero keys) with a voice
+ * picked for the language's locale. When the server reports Sarvam/Bhashini is
+ * configured (SARVAM_API_KEY / BHASHINI_* in .env.local), TTS audio comes from
  * /api/speech and lip-sync follows its amplitude; any failure falls back to
  * Web Speech. Speech input always uses the browser recogniser.
  */
 import type { LipSync } from "@/components/avatar/useLipSync";
-import type { Lang } from "@/lib/types";
+import { LANG_META, type LangId } from "@/lib/lang";
 import { cancelWebSpeech, speakWeb } from "./webSpeech";
 
-export { listen, recognitionSupported, synthesisSupported } from "./webSpeech";
+export { chooseVoice, listen, onVoicesChanged, recognitionSupported, synthesisSupported, waitForVoices } from "./webSpeech";
 
 let providerPromise: Promise<string> | null = null;
 export function speechProvider(): Promise<string> {
@@ -26,30 +27,40 @@ let currentSource: AudioBufferSourceNode | null = null;
 export function speakable(text: string): string {
   return text
     .replace(/[*_#`>|]/g, " ")
+    .replace(/[✅✏️🚨⚠️]/gu, "")
     .replace(/\[(.*?)\]\(.*?\)/g, "$1")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-export async function speak(text: string, lang: Lang, lip: LipSync): Promise<void> {
+export interface SpokenWith {
+  engine: "sarvam" | "bhashini" | "webspeech";
+  voiceName: string | null;
+  native: boolean;
+}
+
+export async function speak(text: string, lang: LangId, lip: LipSync): Promise<SpokenWith> {
   const clean = speakable(text);
-  if (!clean) return;
+  if (!clean) return { engine: "webspeech", voiceName: null, native: true };
   stopSpeaking(lip);
-  if ((await speechProvider()) !== "webspeech") {
+  const provider = await speechProvider();
+  if (provider === "sarvam" || provider === "bhashini") {
     try {
-      return await speakServer(clean, lang, lip);
+      await speakServer(clean, lang, lip);
+      return { engine: provider, voiceName: provider === "sarvam" ? "Sarvam Bulbul" : "Bhashini", native: true };
     } catch {
       /* fall through to Web Speech */
     }
   }
-  await speakWeb(clean, lang, {
+  const choice = await speakWeb(clean, LANG_META[lang].ttsLocale, {
     onStart: () => lip.startText(clean),
     onBoundary: (i) => lip.syncTo(i),
     onEnd: () => lip.stop(),
   });
+  return { engine: "webspeech", voiceName: choice.voice?.name ?? null, native: choice.native };
 }
 
-async function speakServer(text: string, lang: Lang, lip: LipSync): Promise<void> {
+async function speakServer(text: string, lang: LangId, lip: LipSync): Promise<void> {
   const res = await fetch("/api/speech", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

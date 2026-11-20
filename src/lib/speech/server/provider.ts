@@ -1,5 +1,5 @@
 import "server-only";
-import type { Lang } from "@/lib/types";
+import type { Locale } from "@/lib/lang";
 import { bhashiniConfigured, bhashiniTts } from "./bhashini";
 import { sarvamConfigured, sarvamTts } from "./sarvam";
 
@@ -14,7 +14,7 @@ export function activeProvider(): SpeechProvider {
 }
 
 /** Returns WAV bytes, or null when the browser should synthesise locally. */
-export async function synthesize(text: string, lang: Lang): Promise<Uint8Array | null> {
+export async function synthesize(text: string, lang: Locale): Promise<Uint8Array | null> {
   switch (activeProvider()) {
     case "sarvam":
       return sarvamTts(text, lang);

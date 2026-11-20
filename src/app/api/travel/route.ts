@@ -1,12 +1,14 @@
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { schemas } from "@/lib/agent/tools";
+import { confirmAction, discardAction, prepareCancel, prepareRebook } from "@/lib/travel/actions";
 import { bookingForItinerary } from "@/lib/travel/booking";
 import { searchFlights } from "@/lib/travel/flights";
 import { searchHotels } from "@/lib/travel/hotels";
 import { checkAvailability } from "@/lib/travel/inventory";
 import { getItinerary } from "@/lib/travel/itinerary";
 import { sightseeing, store, transfers } from "@/lib/travel/store";
+import { weatherFor } from "@/lib/travel/weather";
 
 /**
  * Read-only REST over the mock inventory for UI widgets.
@@ -15,7 +17,11 @@ import { sightseeing, store, transfers } from "@/lib/travel/store";
  *   GET /api/travel?op=availability&kind=hotel&refId=H001&date=...&pax=2&roomCode=STD
  *   GET /api/travel?op=itinerary&id=ITN-XXXX   (includes booking if any)
  *   GET /api/travel?op=extras&city=Goa         (transfers + sightseeing)
- * Mutations (itinerary edits, booking, disruptions) go through the agent tools in /api/chat.
+ *   GET /api/travel?op=bookings&ids=BKG-1,BKG-2
+ *   GET /api/travel?op=weather&city=Goa&date=2026-12-05
+ * POST is the confirmation gate (see lib/travel/actions.ts):
+ *   {op:"confirm", actionId, leadGuest?} · {op:"discard", actionId}
+ *   {op:"prepareCancel", bookingId} · {op:"prepareRebook", bookingId, optionIndex}
  */
 const num = z.coerce.number();
 
@@ -55,6 +61,12 @@ export async function GET(req: NextRequest) {
         const b = store.bookings.get(z.string().parse(q.id));
         return b ? Response.json(b) : Response.json({ error: "Not found" }, { status: 404 });
       }
+      case "bookings": {
+        const ids = z.string().max(400).parse(q.ids ?? "").split(",").filter(Boolean);
+        return Response.json(ids.map((id) => store.bookings.get(id)).filter(Boolean));
+      }
+      case "weather":
+        return Response.json(weatherFor(z.string().parse(q.city), z.string().regex(/^\d{4}-\d{2}-\d{2}$/).parse(q.date)));
       case "extras": {
         const city = z.string().parse(q.city).toLowerCase();
         return Response.json({
@@ -68,5 +80,39 @@ export async function GET(req: NextRequest) {
   } catch (e) {
     const message = e instanceof z.ZodError ? "Invalid query" : e instanceof Error ? e.message : String(e);
     return Response.json({ error: message, issues: e instanceof z.ZodError ? e.issues : undefined }, { status: 400 });
+  }
+}
+
+const leadGuestSchema = z.object({
+  name: z.string().trim().min(1).max(80),
+  phone: z.string().trim().min(6).max(20),
+  email: z.string().trim().max(120),
+});
+
+const postSchema = z.discriminatedUnion("op", [
+  z.object({ op: z.literal("confirm"), actionId: z.string().max(32), leadGuest: leadGuestSchema.nullable().default(null) }),
+  z.object({ op: z.literal("discard"), actionId: z.string().max(32) }),
+  z.object({ op: z.literal("prepareCancel"), bookingId: z.string().max(32) }),
+  z.object({ op: z.literal("prepareRebook"), bookingId: z.string().max(32), optionIndex: z.number().int().min(0).max(10) }),
+]);
+
+export async function POST(req: Request) {
+  const parsed = postSchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) return Response.json({ error: "Invalid request", issues: parsed.error.issues }, { status: 400 });
+  const b = parsed.data;
+  try {
+    switch (b.op) {
+      case "confirm":
+        return Response.json(confirmAction(b.actionId, b.leadGuest));
+      case "discard":
+        discardAction(b.actionId);
+        return Response.json({ ok: true });
+      case "prepareCancel":
+        return Response.json({ action: prepareCancel(b.bookingId) });
+      case "prepareRebook":
+        return Response.json({ action: prepareRebook(b.bookingId, b.optionIndex) });
+    }
+  } catch (e) {
+    return Response.json({ error: e instanceof Error ? e.message : String(e) }, { status: 409 });
   }
 }

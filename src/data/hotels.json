@@ -1,12 +1,12 @@
 [
  {
   "id": "H001",
-  "name": "The Banyan Retreat Delhi",
+  "name": "Saffron Courtyard Delhi",
   "city": "Delhi",
   "area": "Connaught Place",
   "stars": 3,
   "rating": 4.7,
-  "pricePerNightINR": 7650,
+  "pricePerNightINR": 4350,
   "amenities": [
    "wifi",
    "breakfast",
@@ -19,21 +19,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7650,
+    "priceINR": 4350,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10350,
+    "priceINR": 5850,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14550,
+    "priceINR": 8250,
     "available": 0
    }
   ],
@@ -43,12 +43,12 @@
  },
  {
   "id": "H002",
-  "name": "Monsoon Bay Suites Delhi",
+  "name": "Lotus Residency Delhi",
   "city": "Delhi",
   "area": "Aerocity",
   "stars": 4,
   "rating": 4.9,
-  "pricePerNightINR": 9850,
+  "pricePerNightINR": 5600,
   "amenities": [
    "wifi",
    "spa",
@@ -61,21 +61,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9850,
+    "priceINR": 5600,
     "available": 5
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 13300,
+    "priceINR": 7550,
     "available": 2
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18700,
+    "priceINR": 10650,
     "available": 0
    }
   ],
@@ -85,12 +85,12 @@
  },
  {
   "id": "H003",
-  "name": "Saffron Courtyard Delhi",
+  "name": "The Banyan Retreat Delhi",
   "city": "Delhi",
   "area": "Karol Bagh",
   "stars": 4,
   "rating": 4.5,
-  "pricePerNightINR": 8250,
+  "pricePerNightINR": 4750,
   "amenities": [
    "breakfast",
    "spa",
@@ -104,21 +104,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8250,
+    "priceINR": 4750,
     "available": 6
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11150,
+    "priceINR": 6400,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15700,
+    "priceINR": 9050,
     "available": 2
    }
   ],
@@ -128,12 +128,12 @@
  },
  {
   "id": "H004",
-  "name": "The Banyan Retreat Delhi",
+  "name": "Peacock Heritage Delhi",
   "city": "Delhi",
   "area": "Connaught Place",
   "stars": 5,
   "rating": 4.2,
-  "pricePerNightINR": 11750,
+  "pricePerNightINR": 6700,
   "amenities": [
    "wifi",
    "pool",
@@ -144,21 +144,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11750,
+    "priceINR": 6700,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 15850,
+    "priceINR": 9050,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 22350,
+    "priceINR": 12750,
     "available": 1
    }
   ],
@@ -168,12 +168,12 @@
  },
  {
   "id": "H005",
-  "name": "Saffron Courtyard Mumbai",
+  "name": "Lotus Residency Mumbai",
   "city": "Mumbai",
   "area": "Colaba",
   "stars": 3,
   "rating": 3.7,
-  "pricePerNightINR": 8300,
+  "pricePerNightINR": 4700,
   "amenities": [
    "wifi",
    "pool",
@@ -188,21 +188,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8300,
+    "priceINR": 4700,
     "available": 8
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11200,
+    "priceINR": 6350,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15750,
+    "priceINR": 8950,
     "available": 1
    }
   ],
@@ -217,7 +217,7 @@
   "area": "Bandra",
   "stars": 4,
   "rating": 4.5,
-  "pricePerNightINR": 9500,
+  "pricePerNightINR": 5450,
   "amenities": [
    "wifi",
    "pool",
@@ -232,21 +232,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9500,
+    "priceINR": 5450,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12850,
+    "priceINR": 7350,
     "available": 2
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18050,
+    "priceINR": 10350,
     "available": 0
    }
   ],
@@ -256,12 +256,12 @@
  },
  {
   "id": "H007",
-  "name": "Monsoon Bay Suites Mumbai",
+  "name": "Peacock Heritage Mumbai",
   "city": "Mumbai",
   "area": "Andheri",
   "stars": 4,
   "rating": 3.9,
-  "pricePerNightINR": 9800,
+  "pricePerNightINR": 5600,
   "amenities": [
    "wifi",
    "breakfast",
@@ -274,21 +274,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9800,
+    "priceINR": 5600,
     "available": 6
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 13250,
+    "priceINR": 7550,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18600,
+    "priceINR": 10650,
     "available": 0
    }
   ],
@@ -298,12 +298,12 @@
  },
  {
   "id": "H008",
-  "name": "Saffron Courtyard Mumbai",
+  "name": "Monsoon Bay Suites Mumbai",
   "city": "Mumbai",
   "area": "Colaba",
   "stars": 5,
   "rating": 3.8,
-  "pricePerNightINR": 9600,
+  "pricePerNightINR": 5600,
   "amenities": [
    "wifi",
    "breakfast",
@@ -315,21 +315,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9600,
+    "priceINR": 5600,
     "available": 6
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12950,
+    "priceINR": 7550,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18250,
+    "priceINR": 10650,
     "available": 2
    }
   ],
@@ -339,12 +339,12 @@
  },
  {
   "id": "H009",
-  "name": "Monsoon Bay Suites Goa",
+  "name": "The Banyan Retreat Goa",
   "city": "Goa",
   "area": "Calangute",
   "stars": 3,
   "rating": 4.3,
-  "pricePerNightINR": 7900,
+  "pricePerNightINR": 4450,
   "amenities": [
    "wifi",
    "breakfast",
@@ -360,21 +360,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7900,
+    "priceINR": 4450,
     "available": 2
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10650,
+    "priceINR": 6000,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15000,
+    "priceINR": 8450,
     "available": 0
    }
   ],
@@ -384,12 +384,12 @@
  },
  {
   "id": "H010",
-  "name": "Saffron Courtyard Goa",
+  "name": "Peacock Heritage Goa",
   "city": "Goa",
   "area": "Baga",
   "stars": 4,
   "rating": 4.5,
-  "pricePerNightINR": 8550,
+  "pricePerNightINR": 4900,
   "amenities": [
    "wifi",
    "breakfast",
@@ -402,21 +402,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8550,
+    "priceINR": 4900,
     "available": 4
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11550,
+    "priceINR": 6600,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 16250,
+    "priceINR": 9300,
     "available": 2
    }
   ],
@@ -426,12 +426,12 @@
  },
  {
   "id": "H011",
-  "name": "The Banyan Retreat Goa",
+  "name": "Monsoon Bay Suites Goa",
   "city": "Goa",
   "area": "Panaji",
   "stars": 4,
   "rating": 4.6,
-  "pricePerNightINR": 8400,
+  "pricePerNightINR": 4850,
   "amenities": [
    "wifi",
    "breakfast",
@@ -445,21 +445,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8400,
+    "priceINR": 4850,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11350,
+    "priceINR": 6550,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15950,
+    "priceINR": 9200,
     "available": 2
    }
   ],
@@ -469,12 +469,12 @@
  },
  {
   "id": "H012",
-  "name": "Monsoon Bay Suites Goa",
+  "name": "Marigold Inn Goa",
   "city": "Goa",
   "area": "Calangute",
   "stars": 5,
   "rating": 4.3,
-  "pricePerNightINR": 11550,
+  "pricePerNightINR": 6600,
   "amenities": [
    "breakfast",
    "pool",
@@ -489,21 +489,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11550,
+    "priceINR": 6600,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 15600,
+    "priceINR": 8900,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 21950,
+    "priceINR": 12550,
     "available": 2
    }
   ],
@@ -513,12 +513,12 @@
  },
  {
   "id": "H013",
-  "name": "The Banyan Retreat Bengaluru",
+  "name": "Peacock Heritage Bengaluru",
   "city": "Bengaluru",
   "area": "MG Road",
   "stars": 3,
   "rating": 4.6,
-  "pricePerNightINR": 8200,
+  "pricePerNightINR": 4600,
   "amenities": [
    "wifi",
    "breakfast",
@@ -534,21 +534,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8200,
+    "priceINR": 4600,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11050,
+    "priceINR": 6200,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15600,
+    "priceINR": 8750,
     "available": 0
    }
   ],
@@ -563,7 +563,7 @@
   "area": "Indiranagar",
   "stars": 4,
   "rating": 4.3,
-  "pricePerNightINR": 7400,
+  "pricePerNightINR": 4300,
   "amenities": [
    "breakfast",
    "gym",
@@ -576,21 +576,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7400,
+    "priceINR": 4300,
     "available": 5
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10000,
+    "priceINR": 5800,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14050,
+    "priceINR": 8150,
     "available": 1
    }
   ],
@@ -600,12 +600,12 @@
  },
  {
   "id": "H015",
-  "name": "Saffron Courtyard Bengaluru",
+  "name": "Marigold Inn Bengaluru",
   "city": "Bengaluru",
   "area": "Whitefield",
   "stars": 4,
   "rating": 4,
-  "pricePerNightINR": 10000,
+  "pricePerNightINR": 5650,
   "amenities": [
    "wifi",
    "pool",
@@ -621,21 +621,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 10000,
+    "priceINR": 5650,
     "available": 6
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 13500,
+    "priceINR": 7650,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 19000,
+    "priceINR": 10750,
     "available": 0
    }
   ],
@@ -645,12 +645,12 @@
  },
  {
   "id": "H016",
-  "name": "The Banyan Retreat Bengaluru",
+  "name": "Saffron Courtyard Bengaluru",
   "city": "Bengaluru",
   "area": "MG Road",
   "stars": 5,
   "rating": 3.8,
-  "pricePerNightINR": 8950,
+  "pricePerNightINR": 5250,
   "amenities": [
    "breakfast",
    "airport_shuttle",
@@ -661,21 +661,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8950,
+    "priceINR": 5250,
     "available": 4
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12100,
+    "priceINR": 7100,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 17000,
+    "priceINR": 10000,
     "available": 2
    }
   ],
@@ -685,12 +685,12 @@
  },
  {
   "id": "H017",
-  "name": "Saffron Courtyard Chennai",
+  "name": "Monsoon Bay Suites Chennai",
   "city": "Chennai",
   "area": "T. Nagar",
   "stars": 3,
   "rating": 3.9,
-  "pricePerNightINR": 6600,
+  "pricePerNightINR": 3800,
   "amenities": [
    "wifi",
    "pool",
@@ -704,21 +704,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 6600,
+    "priceINR": 3800,
     "available": 2
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 8900,
+    "priceINR": 5150,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 12550,
+    "priceINR": 7200,
     "available": 1
    }
   ],
@@ -728,12 +728,12 @@
  },
  {
   "id": "H018",
-  "name": "The Banyan Retreat Chennai",
+  "name": "Marigold Inn Chennai",
   "city": "Chennai",
   "area": "Mylapore",
   "stars": 4,
   "rating": 4.3,
-  "pricePerNightINR": 8450,
+  "pricePerNightINR": 4850,
   "amenities": [
    "breakfast",
    "pool",
@@ -749,21 +749,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8450,
+    "priceINR": 4850,
     "available": 7
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11400,
+    "priceINR": 6550,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 16050,
+    "priceINR": 9200,
     "available": 1
    }
   ],
@@ -773,12 +773,12 @@
  },
  {
   "id": "H019",
-  "name": "Monsoon Bay Suites Chennai",
+  "name": "Saffron Courtyard Chennai",
   "city": "Chennai",
   "area": "OMR",
   "stars": 4,
   "rating": 3.8,
-  "pricePerNightINR": 10350,
+  "pricePerNightINR": 5850,
   "amenities": [
    "wifi",
    "pool",
@@ -791,21 +791,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 10350,
+    "priceINR": 5850,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 13950,
+    "priceINR": 7900,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 19650,
+    "priceINR": 11100,
     "available": 1
    }
   ],
@@ -815,12 +815,12 @@
  },
  {
   "id": "H020",
-  "name": "Saffron Courtyard Chennai",
+  "name": "Lotus Residency Chennai",
   "city": "Chennai",
   "area": "T. Nagar",
   "stars": 5,
   "rating": 4.5,
-  "pricePerNightINR": 11350,
+  "pricePerNightINR": 6500,
   "amenities": [
    "wifi",
    "breakfast",
@@ -835,21 +835,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11350,
+    "priceINR": 6500,
     "available": 2
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 15300,
+    "priceINR": 8800,
     "available": 2
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 21550,
+    "priceINR": 12350,
     "available": 0
    }
   ],
@@ -859,12 +859,12 @@
  },
  {
   "id": "H021",
-  "name": "Monsoon Bay Suites Hyderabad",
+  "name": "Marigold Inn Hyderabad",
   "city": "Hyderabad",
   "area": "Banjara Hills",
   "stars": 3,
   "rating": 3.8,
-  "pricePerNightINR": 8300,
+  "pricePerNightINR": 4700,
   "amenities": [
    "wifi",
    "breakfast",
@@ -877,21 +877,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8300,
+    "priceINR": 4700,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11200,
+    "priceINR": 6350,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15750,
+    "priceINR": 8950,
     "available": 0
    }
   ],
@@ -906,7 +906,7 @@
   "area": "HITEC City",
   "stars": 4,
   "rating": 4.8,
-  "pricePerNightINR": 7750,
+  "pricePerNightINR": 4500,
   "amenities": [
    "breakfast",
    "spa",
@@ -919,21 +919,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7750,
+    "priceINR": 4500,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10450,
+    "priceINR": 6100,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14750,
+    "priceINR": 8550,
     "available": 1
    }
   ],
@@ -943,12 +943,12 @@
  },
  {
   "id": "H023",
-  "name": "The Banyan Retreat Hyderabad",
+  "name": "Lotus Residency Hyderabad",
   "city": "Hyderabad",
   "area": "Charminar",
   "stars": 4,
   "rating": 4,
-  "pricePerNightINR": 8150,
+  "pricePerNightINR": 4700,
   "amenities": [
    "wifi",
    "spa",
@@ -962,21 +962,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8150,
+    "priceINR": 4700,
     "available": 7
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 11000,
+    "priceINR": 6350,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 15500,
+    "priceINR": 8950,
     "available": 2
    }
   ],
@@ -986,12 +986,12 @@
  },
  {
   "id": "H024",
-  "name": "Monsoon Bay Suites Hyderabad",
+  "name": "The Banyan Retreat Hyderabad",
   "city": "Hyderabad",
   "area": "Banjara Hills",
   "stars": 5,
   "rating": 4.2,
-  "pricePerNightINR": 11000,
+  "pricePerNightINR": 6300,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1006,21 +1006,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11000,
+    "priceINR": 6300,
     "available": 8
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 14850,
+    "priceINR": 8500,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 20900,
+    "priceINR": 11950,
     "available": 0
    }
   ],
@@ -1030,12 +1030,12 @@
  },
  {
   "id": "H025",
-  "name": "The Banyan Retreat Kolkata",
+  "name": "Saffron Courtyard Kolkata",
   "city": "Kolkata",
   "area": "Park Street",
   "stars": 3,
   "rating": 4.3,
-  "pricePerNightINR": 6100,
+  "pricePerNightINR": 3500,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1048,21 +1048,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 6100,
+    "priceINR": 3500,
     "available": 2
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 8250,
+    "priceINR": 4750,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 11600,
+    "priceINR": 6650,
     "available": 2
    }
   ],
@@ -1072,12 +1072,12 @@
  },
  {
   "id": "H026",
-  "name": "Monsoon Bay Suites Kolkata",
+  "name": "Lotus Residency Kolkata",
   "city": "Kolkata",
   "area": "Salt Lake",
   "stars": 4,
   "rating": 3.6,
-  "pricePerNightINR": 9400,
+  "pricePerNightINR": 5350,
   "amenities": [
    "breakfast",
    "pool",
@@ -1091,21 +1091,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9400,
+    "priceINR": 5350,
     "available": 5
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12700,
+    "priceINR": 7200,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 17850,
+    "priceINR": 10150,
     "available": 0
    }
   ],
@@ -1115,12 +1115,12 @@
  },
  {
   "id": "H027",
-  "name": "Saffron Courtyard Kolkata",
+  "name": "The Banyan Retreat Kolkata",
   "city": "Kolkata",
   "area": "Esplanade",
   "stars": 4,
   "rating": 4.5,
-  "pricePerNightINR": 7550,
+  "pricePerNightINR": 4350,
   "amenities": [
    "wifi",
    "pool",
@@ -1132,21 +1132,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7550,
+    "priceINR": 4350,
     "available": 4
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10200,
+    "priceINR": 5850,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14350,
+    "priceINR": 8250,
     "available": 0
    }
   ],
@@ -1156,12 +1156,12 @@
  },
  {
   "id": "H028",
-  "name": "The Banyan Retreat Kolkata",
+  "name": "Peacock Heritage Kolkata",
   "city": "Kolkata",
   "area": "Park Street",
   "stars": 5,
   "rating": 4.8,
-  "pricePerNightINR": 9650,
+  "pricePerNightINR": 5600,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1174,21 +1174,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9650,
+    "priceINR": 5600,
     "available": 8
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 13050,
+    "priceINR": 7550,
     "available": 2
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18350,
+    "priceINR": 10650,
     "available": 1
    }
   ],
@@ -1198,12 +1198,12 @@
  },
  {
   "id": "H029",
-  "name": "Saffron Courtyard Jaipur",
+  "name": "Lotus Residency Jaipur",
   "city": "Jaipur",
   "area": "Pink City",
   "stars": 3,
   "rating": 3.8,
-  "pricePerNightINR": 7600,
+  "pricePerNightINR": 4300,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1217,21 +1217,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7600,
+    "priceINR": 4300,
     "available": 8
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10250,
+    "priceINR": 5800,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14450,
+    "priceINR": 8150,
     "available": 0
    }
   ],
@@ -1246,7 +1246,7 @@
   "area": "C-Scheme",
   "stars": 4,
   "rating": 3.7,
-  "pricePerNightINR": 7850,
+  "pricePerNightINR": 4550,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1261,21 +1261,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 7850,
+    "priceINR": 4550,
     "available": 3
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 10600,
+    "priceINR": 6150,
     "available": 3
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 14900,
+    "priceINR": 8650,
     "available": 0
    }
   ],
@@ -1285,12 +1285,12 @@
  },
  {
   "id": "H031",
-  "name": "Monsoon Bay Suites Jaipur",
+  "name": "Peacock Heritage Jaipur",
   "city": "Jaipur",
   "area": "Amer Road",
   "stars": 4,
   "rating": 3.7,
-  "pricePerNightINR": 8900,
+  "pricePerNightINR": 5100,
   "amenities": [
    "pool",
    "spa",
@@ -1304,21 +1304,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 8900,
+    "priceINR": 5100,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12000,
+    "priceINR": 6900,
     "available": 2
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 16900,
+    "priceINR": 9700,
     "available": 1
    }
   ],
@@ -1328,12 +1328,12 @@
  },
  {
   "id": "H032",
-  "name": "Saffron Courtyard Jaipur",
+  "name": "Monsoon Bay Suites Jaipur",
   "city": "Jaipur",
   "area": "Pink City",
   "stars": 5,
   "rating": 4.1,
-  "pricePerNightINR": 11200,
+  "pricePerNightINR": 6400,
   "amenities": [
    "breakfast",
    "pool",
@@ -1346,21 +1346,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11200,
+    "priceINR": 6400,
     "available": 7
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 15100,
+    "priceINR": 8650,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 21300,
+    "priceINR": 12150,
     "available": 2
    }
   ],
@@ -1370,12 +1370,12 @@
  },
  {
   "id": "H033",
-  "name": "Monsoon Bay Suites Kochi",
+  "name": "The Banyan Retreat Kochi",
   "city": "Kochi",
   "area": "Fort Kochi",
   "stars": 3,
   "rating": 3.8,
-  "pricePerNightINR": 6650,
+  "pricePerNightINR": 3800,
   "amenities": [
    "wifi",
    "pool",
@@ -1387,21 +1387,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 6650,
+    "priceINR": 3800,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 9000,
+    "priceINR": 5150,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 12650,
+    "priceINR": 7200,
     "available": 2
    }
   ],
@@ -1411,12 +1411,12 @@
  },
  {
   "id": "H034",
-  "name": "Saffron Courtyard Kochi",
+  "name": "Peacock Heritage Kochi",
   "city": "Kochi",
   "area": "Marine Drive",
   "stars": 4,
   "rating": 4.6,
-  "pricePerNightINR": 9500,
+  "pricePerNightINR": 5400,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1430,21 +1430,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9500,
+    "priceINR": 5400,
     "available": 9
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12850,
+    "priceINR": 7300,
     "available": 4
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 18050,
+    "priceINR": 10250,
     "available": 2
    }
   ],
@@ -1454,12 +1454,12 @@
  },
  {
   "id": "H035",
-  "name": "The Banyan Retreat Kochi",
+  "name": "Monsoon Bay Suites Kochi",
   "city": "Kochi",
   "area": "Edappally",
   "stars": 4,
   "rating": 4.9,
-  "pricePerNightINR": 9400,
+  "pricePerNightINR": 5350,
   "amenities": [
    "spa",
    "wifi"
@@ -1469,21 +1469,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 9400,
+    "priceINR": 5350,
     "available": 2
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 12700,
+    "priceINR": 7200,
     "available": 5
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 17850,
+    "priceINR": 10150,
     "available": 2
    }
   ],
@@ -1493,12 +1493,12 @@
  },
  {
   "id": "H036",
-  "name": "Monsoon Bay Suites Kochi",
+  "name": "Marigold Inn Kochi",
   "city": "Kochi",
   "area": "Fort Kochi",
   "stars": 5,
   "rating": 4.3,
-  "pricePerNightINR": 11300,
+  "pricePerNightINR": 6500,
   "amenities": [
    "wifi",
    "breakfast",
@@ -1512,21 +1512,21 @@
     "code": "STD",
     "name": "Standard Room",
     "maxGuests": 2,
-    "priceINR": 11300,
+    "priceINR": 6500,
     "available": 7
    },
    {
     "code": "DLX",
     "name": "Deluxe Room",
     "maxGuests": 3,
-    "priceINR": 15250,
+    "priceINR": 8800,
     "available": 1
    },
    {
     "code": "FAM",
     "name": "Family Suite",
     "maxGuests": 4,
-    "priceINR": 21450,
+    "priceINR": 12350,
     "available": 1
    }
   ],

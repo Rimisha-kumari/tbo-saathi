@@ -1,5 +1,6 @@
 import type { Itinerary, ItineraryItem } from "@/lib/types";
 import { priceItem } from "./inventory";
+import { setItems } from "./planner";
 import { newId, store } from "./store";
 
 export interface UpdateItineraryArgs {
@@ -17,7 +18,8 @@ export function getItinerary(id: string): Itinerary | null {
 export function updateItinerary(args: UpdateItineraryArgs): Itinerary {
   let it = args.itineraryId ? store.itineraries.get(args.itineraryId) : undefined;
   if (args.itineraryId && !it) throw new Error(`Itinerary ${args.itineraryId} not found`);
-  if (!it) {
+  // A cancelled trip can't be edited: start a fresh one.
+  if (!it || it.status === "cancelled") {
     it = {
       id: newId("ITN"),
       travellers: args.travellers ?? { adults: Math.max(1, args.item.pax), children: 0 },
@@ -32,21 +34,25 @@ export function updateItinerary(args: UpdateItineraryArgs): Itinerary {
   const sameRef = (i: ItineraryItem, refId: string) =>
     i.refId === refId || i.refId.split("@")[0] === refId.split("@")[0];
 
+  let items = [...it.items];
   if (args.action === "remove") {
-    it.items = it.items.filter((i) => !sameRef(i, args.item.refId));
+    items = items.filter((i) => !sameRef(i, args.item.refId));
   } else {
     const priced = priceItem(args.item);
     if (args.action === "replace") {
       const target = args.replaceRefId ?? args.item.refId;
-      const idx = it.items.findIndex((i) => sameRef(i, target));
+      const idx = items.findIndex((i) => sameRef(i, target));
       if (idx === -1) throw new Error(`Nothing to replace for ${target}`);
-      it.items[idx] = priced;
+      if (priced.kind === "flight" && items[idx].meta?.direction) priced.meta = { ...priced.meta, direction: items[idx].meta!.direction };
+      items[idx] = priced;
     } else {
-      it.items = it.items.filter((i) => i.refId !== priced.refId);
-      it.items.push(priced);
+      if (priced.kind === "flight" && !priced.meta?.direction) {
+        const hasOut = items.some((i) => i.kind === "flight");
+        priced.meta = { ...priced.meta, direction: hasOut ? "return" : "outbound" };
+      }
+      items = items.filter((i) => i.refId !== priced.refId).concat(priced);
     }
   }
-  it.items.sort((a, b) => a.date.localeCompare(b.date));
-  it.totalINR = it.items.reduce((s, i) => s + i.priceINR, 0);
+  setItems(it, items);
   return it;
 }

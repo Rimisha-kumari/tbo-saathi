@@ -1,87 +1,113 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Booking, ChatEvent, DisruptionResult, Expression, Flight, Hotel, Itinerary, Lang } from "@/lib/types";
+import type { LangId } from "@/lib/lang";
+import type { ChatEvent, DisruptionResult, Expression, LlmProvider, PendingAction, Pref } from "@/lib/types";
 
-export type Card =
-  | { kind: "flights"; data: Flight[]; label?: string }
-  | { kind: "hotels"; data: Hotel[] }
-  | { kind: "itinerary"; data: Itinerary }
-  | { kind: "booking"; data: Booking }
+export type InlineCard =
+  | { kind: "action"; action: PendingAction; status: "open" | "confirmed" | "edited" | "error"; error?: string }
   | { kind: "disruption"; data: DisruptionResult }
+  | { kind: "link"; tab: WorkspaceTab; label: string }
   | { kind: "note"; text: string; tone: "info" | "error" };
+
+export type WorkspaceTab = "compare" | "itinerary" | "bookings" | "client";
 
 export interface UiMessage {
   id: string;
   role: "user" | "assistant";
   text: string;
-  cards: Card[];
+  /** Text shown in the bubble when it differs from what was sent (e.g. card clicks). */
+  display?: string;
+  cards: InlineCard[];
   tools: string[];
   pending?: boolean;
 }
 
+export interface ChatContext {
+  lang: LangId;
+  itineraryId: string | null;
+  bookingId: string | null;
+  prefs: string[];
+  budgetINR: number | null;
+  b2b: { enabled: boolean; markupPct: number };
+}
+
+export interface ChatHandlers {
+  onMeta(provider: LlmProvider, lang: LangId): void;
+  onMemory(prefs: Pref[], budgetINR: number | null): void;
+  onState(itineraryId: string | null, bookingId: string | null): void;
+  onTool(name: string, data: unknown): void;
+  onReply(text: string, lang: LangId, mood: Expression): void;
+}
+
 const TOOL_LABEL: Record<string, string> = {
+  planTrip: "Planning trip",
+  adjustTrip: "Adjusting trip",
   searchFlights: "Searching flights",
   searchHotels: "Searching hotels",
   checkAvailability: "Checking availability",
   updateItinerary: "Updating itinerary",
-  bookTrip: "Booking",
+  bookTrip: "Preparing booking",
+  cancelBooking: "Preparing cancellation",
   handleDisruption: "Assessing disruption",
+  applyDisruptionOption: "Preparing rescue",
 };
 
-const uid = () => (typeof globalThis.crypto?.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+const TOOL_LINK: Record<string, { tab: WorkspaceTab; label: string }> = {
+  planTrip: { tab: "itinerary", label: "📅 View day-by-day itinerary" },
+  adjustTrip: { tab: "itinerary", label: "📅 View updated itinerary" },
+  updateItinerary: { tab: "itinerary", label: "📅 View itinerary" },
+  searchFlights: { tab: "compare", label: "⚖️ Compare flights side by side" },
+  searchHotels: { tab: "compare", label: "⚖️ Compare hotels side by side" },
+};
 
-function cardsFor(name: string, data: unknown): Card[] {
-  switch (name) {
-    case "searchFlights":
-      if (Array.isArray(data)) return [{ kind: "flights", data: data as Flight[] }];
-      {
-        const d = data as { outbound: Flight[]; inbound: Flight[] };
-        return [
-          { kind: "flights", data: d.outbound, label: "Outbound" },
-          { kind: "flights", data: d.inbound, label: "Return" },
-        ];
-      }
-    case "searchHotels":
-      return [{ kind: "hotels", data: data as Hotel[] }];
-    case "updateItinerary":
-      return [{ kind: "itinerary", data: data as Itinerary }];
-    case "bookTrip":
-      return [{ kind: "booking", data: data as Booking }];
-    case "handleDisruption":
-      return [{ kind: "disruption", data: data as DisruptionResult }];
-    default:
-      return [];
-  }
-}
+export const uid = () =>
+  typeof globalThis.crypto?.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-export function useChat(opts: { lang: Lang; onReply: (text: string, mood: Expression) => void }) {
+export function useChat(getContext: () => ChatContext, handlers: ChatHandlers) {
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [expression, setExpression] = useState<Expression>("idle");
   const [busy, setBusy] = useState(false);
-  const [ids, setIds] = useState<{ itineraryId: string | null; bookingId: string | null }>({ itineraryId: null, bookingId: null });
-  const [mode, setMode] = useState<"claude" | "offline" | null>(null);
   const sessionRef = useRef<string | null>(null);
-  const idsRef = useRef(ids);
   const msgsRef = useRef(messages);
+  const handlersRef = useRef(handlers);
+  const ctxRef = useRef(getContext);
   useEffect(() => {
     msgsRef.current = messages;
-  }, [messages]);
+    handlersRef.current = handlers;
+    ctxRef.current = getContext;
+  });
   const abortRef = useRef<AbortController | null>(null);
 
-  const patchLast = (fn: (m: UiMessage) => UiMessage) =>
-    setMessages((ms) => ms.map((m, i) => (i === ms.length - 1 ? fn(m) : m)));
+  const patch = useCallback((id: string, fn: (m: UiMessage) => UiMessage) => setMessages((ms) => ms.map((m) => (m.id === id ? fn(m) : m))), []);
+
+  /** Add an assistant message without calling the server (e.g. after a Confirm click). */
+  const addAssistant = useCallback((text: string, cards: InlineCard[] = []) => {
+    const m: UiMessage = { id: uid(), role: "assistant", text, cards, tools: [] };
+    setMessages((ms) => [...ms, m]);
+    return m.id;
+  }, []);
+
+  const updateCard = useCallback((actionId: string, status: "confirmed" | "edited" | "error", error?: string) => {
+    setMessages((ms) =>
+      ms.map((m) => ({
+        ...m,
+        cards: m.cards.map((c) => (c.kind === "action" && c.action.id === actionId ? { ...c, status, error } : c)),
+      })),
+    );
+  }, []);
 
   const send = useCallback(
-    async (text: string) => {
+    async (text: string, opts: { autoLang?: boolean; display?: string } = {}) => {
       const content = text.trim();
       if (!content || busy) return;
       abortRef.current?.abort();
       const ac = new AbortController();
       abortRef.current = ac;
       sessionRef.current ??= uid();
+      const ctx = ctxRef.current();
 
-      const user: UiMessage = { id: uid(), role: "user", text: content, cards: [], tools: [] };
-      const asst: UiMessage = { id: `${user.id}-a`, role: "assistant", text: "", cards: [], tools: [], pending: true };
+      const user: UiMessage = { id: uid(), role: "user", text: content, display: opts.display, cards: [], tools: [] };
+      const asst: UiMessage = { id: uid(), role: "assistant", text: "", cards: [], tools: [], pending: true };
       const history = [...msgsRef.current, user]
         .filter((m) => m.text.trim())
         .slice(-20)
@@ -91,17 +117,17 @@ export function useChat(opts: { lang: Lang; onReply: (text: string, mood: Expres
       setExpression("thinking");
 
       let reply = "";
+      let replyLang = ctx.lang;
       let mood: Expression = "speaking";
+      const links = new Set<string>();
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId: sessionRef.current, lang: opts.lang, ...idsRef.current, messages: history }),
+          body: JSON.stringify({ sessionId: sessionRef.current, autoLang: opts.autoLang ?? true, ...ctx, messages: history }),
           signal: ac.signal,
         });
-        setMode(res.headers.get("X-Saathi-Mode") === "claude" ? "claude" : "offline");
         if (!res.ok || !res.body) throw new Error(`Server error ${res.status}`);
-
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let buf = "";
@@ -115,36 +141,50 @@ export function useChat(opts: { lang: Lang; onReply: (text: string, mood: Expres
             buf = buf.slice(nl + 1);
             if (!line) continue;
             const ev = JSON.parse(line) as ChatEvent;
+            const h = handlersRef.current;
             switch (ev.type) {
+              case "meta":
+                replyLang = ev.lang;
+                h.onMeta(ev.provider, ev.lang);
+                break;
+              case "memory":
+                h.onMemory(ev.prefs, ev.budgetINR);
+                break;
               case "text":
                 reply += ev.delta;
-                patchLast((m) => ({ ...m, text: m.text + ev.delta }));
+                patch(asst.id, (m) => ({ ...m, text: m.text + ev.delta }));
                 break;
               case "expression":
                 if (ev.value === "concerned") mood = "concerned";
                 setExpression(ev.value);
                 break;
+              case "state":
+                h.onState(ev.itineraryId, ev.bookingId);
+                break;
+              case "action":
+                patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "action", action: ev.action, status: "open" }] }));
+                break;
               case "tool":
-                if (ev.status === "start") patchLast((m) => ({ ...m, tools: [...m.tools, TOOL_LABEL[ev.name] ?? ev.name] }));
-                else if (ev.status === "done") patchLast((m) => ({ ...m, cards: [...m.cards, ...cardsFor(ev.name, ev.data)] }));
-                else
-                  patchLast((m) => ({
-                    ...m,
-                    cards: [...m.cards, { kind: "note", tone: "error", text: `${TOOL_LABEL[ev.name] ?? ev.name}: ${(ev.data as { error?: string })?.error ?? "failed"}` }],
-                  }));
+                if (ev.status === "start") {
+                  patch(asst.id, (m) => ({ ...m, tools: [...m.tools, TOOL_LABEL[ev.name] ?? ev.name] }));
+                } else if (ev.status === "done") {
+                  h.onTool(ev.name, ev.data);
+                  if (ev.name === "handleDisruption") {
+                    patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "disruption", data: ev.data as DisruptionResult }] }));
+                  }
+                  const link = TOOL_LINK[ev.name];
+                  if (link && !links.has(link.tab)) {
+                    links.add(link.tab);
+                    patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "link", ...link }] }));
+                  }
+                } else {
+                  const msg = (ev.data as { error?: string })?.error ?? "failed";
+                  patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "note", tone: "error", text: `${TOOL_LABEL[ev.name] ?? ev.name}: ${msg}` }] }));
+                }
                 break;
-              case "state": {
-                const next = {
-                  itineraryId: ev.itineraryId ?? idsRef.current.itineraryId,
-                  bookingId: ev.bookingId ?? idsRef.current.bookingId,
-                };
-                idsRef.current = next;
-                setIds(next);
-                break;
-              }
               case "error":
                 mood = "concerned";
-                patchLast((m) => ({ ...m, cards: [...m.cards, { kind: "note", tone: "error", text: ev.message }] }));
+                patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "note", tone: "error", text: ev.message }] }));
                 break;
             }
           }
@@ -152,17 +192,17 @@ export function useChat(opts: { lang: Lang; onReply: (text: string, mood: Expres
       } catch (e) {
         if ((e as Error).name !== "AbortError") {
           mood = "concerned";
-          patchLast((m) => ({ ...m, cards: [...m.cards, { kind: "note", tone: "error", text: (e as Error).message }] }));
+          patch(asst.id, (m) => ({ ...m, cards: [...m.cards, { kind: "note", tone: "error", text: (e as Error).message }] }));
         }
       } finally {
-        patchLast((m) => ({ ...m, pending: false }));
+        patch(asst.id, (m) => ({ ...m, pending: false }));
         setBusy(false);
         setExpression(mood === "concerned" ? "concerned" : "idle");
-        if (reply.trim()) opts.onReply(reply, mood);
+        if (reply.trim()) handlersRef.current.onReply(reply, replyLang, mood);
       }
     },
-    [busy, opts],
+    [busy, patch],
   );
 
-  return { messages, send, busy, expression, setExpression, ids, mode };
+  return { messages, send, busy, expression, setExpression, addAssistant, updateCard };
 }

@@ -1,5 +1,5 @@
 import "server-only";
-import type { Lang } from "@/lib/types";
+import type { Locale } from "@/lib/lang";
 
 /**
  * Sarvam AI text-to-speech (Bulbul). Enabled when SARVAM_API_KEY is set and
@@ -8,7 +8,7 @@ import type { Lang } from "@/lib/types";
  */
 export const sarvamConfigured = () => Boolean(process.env.SARVAM_API_KEY);
 
-export async function sarvamTts(text: string, lang: Lang): Promise<Uint8Array> {
+export async function sarvamTts(text: string, lang: Locale): Promise<Uint8Array> {
   const res = await fetch("https://api.sarvam.ai/text-to-speech", {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-subscription-key": process.env.SARVAM_API_KEY! },

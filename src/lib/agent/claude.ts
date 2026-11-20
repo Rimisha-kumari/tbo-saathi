@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { ChatEvent, Expression } from "@/lib/types";
-import { runTool, type ToolContext } from "./handlers";
+import { runTool, type ToolContext, type ToolOutcome } from "./handlers";
 import { SYSTEM_PROMPT } from "./prompt";
 import { tools } from "./tools";
 
@@ -70,17 +70,24 @@ export async function runClaude({ messages, sessionState, ctx, emit, signal }: R
     let expression: Expression | undefined;
     const results = await Promise.all(
       toolUses.map(async (tu): Promise<Anthropic.Beta.BetaToolResultBlockParam> => {
-        const out = runTool(tu.name, tu.input, ctx);
-        emit({ type: "tool", name: tu.name, status: out.ok ? "done" : "error", data: out.data });
-        if (out.state) emit({ type: "state", itineraryId: out.state.itineraryId ?? null, bookingId: out.state.bookingId ?? null });
+        const out = emitTool(tu.name, tu.input, ctx, emit);
         if (out.expression) expression = out.expression;
-        return { type: "tool_result", tool_use_id: tu.id, content: JSON.stringify(out.data), is_error: !out.ok };
+        return { type: "tool_result", tool_use_id: tu.id, content: JSON.stringify(out.forModel ?? out.data), is_error: !out.ok };
       }),
     );
     if (expression) emit({ type: "expression", value: expression });
     messages.push({ role: "user", content: results });
   }
   emit({ type: "text", delta: "\nI need a moment to finish that — could you repeat what you'd like next?" });
+}
+
+/** Runs a tool and streams its result, state changes and any pending confirmation to the client. */
+export function emitTool(name: string, input: unknown, ctx: ToolContext, emit: Emit): ToolOutcome {
+  const out = runTool(name, input, ctx);
+  emit({ type: "tool", name, status: out.ok ? "done" : "error", data: out.data });
+  if (out.state) emit({ type: "state", itineraryId: out.state.itineraryId ?? null, bookingId: out.state.bookingId ?? null });
+  if (out.action) emit({ type: "action", action: out.action });
+  return out;
 }
 
 export function describeApiError(e: unknown): string {

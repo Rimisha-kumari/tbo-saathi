@@ -2,10 +2,10 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 
 /*
- * One zod schema per tool: it generates the strict JSON Schema sent to Claude
- * and re-validates the input in the handler. Strict tool schemas reject numeric
- * bounds and string formats, so constraints live in descriptions and are
- * enforced by the services instead. Optional fields are `.nullable()`.
+ * One zod schema per tool: it generates the strict JSON Schema sent to the LLM
+ * (Claude or OpenAI) and re-validates the input in the handler. Strict tool
+ * schemas reject numeric bounds and string formats, so constraints live in
+ * descriptions and are enforced by the services. Optional fields are `.nullable()`.
  */
 
 const date = z.string().describe("ISO date YYYY-MM-DD");
@@ -22,11 +22,27 @@ const itemSchema = z.object({
       roomCode: z.string().nullable().describe("Hotel room code: STD, DLX or FAM"),
       checkOut: z.string().nullable().describe("Hotel check-out date YYYY-MM-DD"),
       slot: z.string().nullable().describe("Activity start time HH:MM"),
+      time: z.string().nullable().describe("Transfer pickup time HH:MM"),
     })
     .nullable(),
 });
 
+const leadGuest = z.object({ name: z.string(), phone: z.string(), email: z.string() });
+
 export const schemas = {
+  planTrip: z.object({
+    origin: z.string().describe("Origin city name or IATA code, e.g. Delhi or DEL"),
+    destination: z.string().describe("Destination city name or IATA code"),
+    departDate: date,
+    nights: z.number().describe("Number of nights (1-14)"),
+    adults: z.number(),
+    children: z.number(),
+    budgetINR: z.number().nullable().describe("Total trip budget in INR if the traveller gave one, else null (session budget is used)"),
+  }),
+  adjustTrip: z.object({
+    itineraryId: z.string(),
+    action: z.enum(["cheaper", "add_day", "remove_day", "upgrade_hotel"]),
+  }),
   searchFlights: z.object({
     from: z.string().describe("Origin IATA code, e.g. DEL"),
     to: z.string().describe("Destination IATA code, e.g. GOI"),
@@ -65,9 +81,9 @@ export const schemas = {
   }),
   bookTrip: z.object({
     itineraryId: z.string(),
-    leadGuest: z.object({ name: z.string(), phone: z.string(), email: z.string() }),
-    confirm: z.boolean().describe("true only after the traveller explicitly said yes to the summarised total"),
+    leadGuest: leadGuest.nullable().describe("Lead guest if the traveller gave details; null lets them fill it on the confirmation card"),
   }),
+  cancelBooking: z.object({ bookingId: z.string() }),
   handleDisruption: z.object({
     bookingId: z.string(),
     disruption: z.object({
@@ -76,33 +92,53 @@ export const schemas = {
       severity: z.enum(["low", "medium", "high"]),
     }),
   }),
+  applyDisruptionOption: z.object({
+    bookingId: z.string(),
+    optionIndex: z.number().describe("0-based index into the options returned by handleDisruption"),
+  }),
 } as const;
 
 export type ToolName = keyof typeof schemas;
 export type ToolInput<N extends ToolName> = z.infer<(typeof schemas)[N]>;
 
 const descriptions: Record<ToolName, string> = {
+  planTrip:
+    "Build a complete trip in one call: cheapest suitable flights both ways, a hotel that fits the budget and the traveller's remembered preferences, airport pickup/drop cabs and sightseeing. Returns the new itinerary plus top-3 alternatives for side-by-side comparison. Prefer this whenever the traveller wants a trip planned.",
+  adjustTrip:
+    "Edit an existing itinerary: 'cheaper' swaps to cheaper flights/hotel, 'add_day'/'remove_day' changes the stay by one night (moves the return flight and cab), 'upgrade_hotel' picks a better hotel. Returns the itinerary, price change and a list of changes.",
   searchFlights:
-    "Search domestic Indian flights for one date. Returns up to 5 dated flights with fare per person, seats left and ids to use in checkAvailability/updateItinerary. For a round trip call it once per direction.",
+    "Search domestic Indian flights for one date. Returns up to 5 dated flights with fare per person, seats left and ids to use in checkAvailability/updateItinerary. For a round trip set returnDate.",
   searchHotels:
     "Search hotels in an Indian city for given dates. Returns up to 5 hotels with room types (STD/DLX/FAM), per-night prices and live availability.",
   checkAvailability:
-    "Re-check live availability and total price for one flight, hotel room, transfer or activity before adding it or booking.",
+    "Re-check live availability and total price for one flight, hotel room, transfer or activity.",
   updateItinerary:
-    "Add, remove or replace an item in the traveller's itinerary. Creates an itinerary when itineraryId is null. Returns the full itinerary with server-computed prices and total. Also use it to apply a chosen disruption option.",
+    "Add, remove or replace one item in the traveller's itinerary. Creates an itinerary when itineraryId is null. Returns the full itinerary with server-computed prices and total.",
   bookTrip:
-    "Book the itinerary and issue vouchers. Only call after you summarised items and total AND the traveller explicitly confirmed in their latest message. Calling it again on a booked itinerary amends the booking.",
+    "PREPARE a booking (or an update to an existing booking) for the traveller to confirm. It does not book: it shows a summary card with Confirm ✅ / Edit ✏️ buttons and the booking happens only when the traveller clicks Confirm.",
+  cancelBooking:
+    "PREPARE a cancellation with the refund breakdown. Nothing is cancelled until the traveller clicks Confirm on the card.",
   handleDisruption:
-    "Assess a disruption (flight delay/cancellation, hotel overbooking, weather) on a booking and return the impact and re-accommodation options with price differences.",
+    "Assess a disruption (flight delay/cancellation, hotel overbooking, weather) on a booking. Returns the impact and rescue options; each option lists knock-on changes such as new airport-cab time and hotel check-in.",
+  applyDisruptionOption:
+    "PREPARE the chosen rescue option from handleDisruption for confirmation. The traveller must click Confirm on the card to apply it and reissue vouchers.",
 };
 
-export const tools: Anthropic.Beta.BetaTool[] = (Object.keys(schemas) as ToolName[]).map((name) => {
-  const { $schema: _ignored, ...input_schema } = z.toJSONSchema(schemas[name]) as Record<string, unknown>;
+const jsonSchema = (name: ToolName) => {
+  const { $schema: _ignored, ...schema } = z.toJSONSchema(schemas[name]) as Record<string, unknown>;
   void _ignored;
-  return {
-    name,
-    description: descriptions[name],
-    strict: true,
-    input_schema: input_schema as Anthropic.Beta.BetaTool.InputSchema,
-  };
-});
+  return schema;
+};
+
+export const tools: Anthropic.Beta.BetaTool[] = (Object.keys(schemas) as ToolName[]).map((name) => ({
+  name,
+  description: descriptions[name],
+  strict: true,
+  input_schema: jsonSchema(name) as Anthropic.Beta.BetaTool.InputSchema,
+}));
+
+/** Same tools in OpenAI Chat Completions function format (used only as a fallback provider). */
+export const openAiTools = (Object.keys(schemas) as ToolName[]).map((name) => ({
+  type: "function" as const,
+  function: { name, description: descriptions[name], parameters: jsonSchema(name), strict: true },
+}));

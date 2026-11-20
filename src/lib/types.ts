@@ -1,7 +1,9 @@
+import type { LangId } from "./lang";
+
+export type { LangId } from "./lang";
 export type Cabin = "economy" | "premium" | "business";
 export type ItemKind = "flight" | "hotel" | "transfer" | "sightseeing";
 export type Expression = "idle" | "listening" | "thinking" | "speaking" | "concerned";
-export type Lang = "en-IN" | "hi-IN" | "ta-IN" | "te-IN" | "bn-IN";
 
 /** Daily schedule row as stored in data/flights.json. */
 export interface FlightSchedule {
@@ -69,13 +71,15 @@ export interface Sightseeing {
   slots: string[];
 }
 
+export type ItemMeta = Record<string, string | number | null>;
+
 export interface ItineraryItem {
   kind: ItemKind;
   refId: string;
   date: string;
   pax: number;
   priceINR: number;
-  meta?: Record<string, string | number | null>;
+  meta?: ItemMeta;
 }
 
 export interface Itinerary {
@@ -83,7 +87,7 @@ export interface Itinerary {
   travellers: { adults: number; children: number };
   items: ItineraryItem[];
   totalINR: number;
-  status: "draft" | "held" | "booked";
+  status: "draft" | "held" | "booked" | "cancelled";
 }
 
 export interface Voucher {
@@ -98,13 +102,21 @@ export interface Voucher {
   details: string;
 }
 
+export interface LeadGuest {
+  name: string;
+  phone: string;
+  email: string;
+}
+
 export interface Booking {
   id: string;
   itineraryId: string;
   pnr: string;
-  leadGuest: { name: string; phone: string; email: string };
+  leadGuest: LeadGuest;
   paidINR: number;
   createdAt: string;
+  status: "confirmed" | "cancelled";
+  refundINR: number;
   vouchers: Voucher[];
 }
 
@@ -116,14 +128,24 @@ export interface Disruption {
   severity: "low" | "medium" | "high";
 }
 
+export interface ItineraryPatch {
+  /** refIds removed from the itinerary. */
+  remove: string[];
+  /** Items added, or replacing an item with the same kind+refId. */
+  upsert: ItineraryItem[];
+}
+
 export interface DisruptionOption {
   label: string;
-  itineraryPatch: { remove: string | null; add: ItineraryItem | null };
+  /** Human-readable knock-on changes (new cab time, hotel check-in…). */
+  changes: string[];
+  itineraryPatch: ItineraryPatch;
   priceDeltaINR: number;
 }
 
 export interface DisruptionResult {
   bookingId: string;
+  type: DisruptionType;
   impact: string;
   options: DisruptionOption[];
 }
@@ -137,11 +159,59 @@ export interface Availability {
   holdExpiresAt: string | null;
 }
 
+/** Something that changes money or a booking: only runs after the user clicks Confirm. */
+export interface PendingAction {
+  id: string;
+  type: "book" | "cancel" | "rebook";
+  title: string;
+  lines: { label: string; amountINR: number | null }[];
+  totalINR: number;
+  /** Positive = traveller pays, negative = refund. */
+  payableINR: number;
+  itineraryId: string | null;
+  bookingId: string | null;
+  leadGuest: LeadGuest | null;
+  expiresAt: string;
+}
+
+export interface Weather {
+  tempC: number;
+  condition: "Sunny" | "Partly cloudy" | "Cloudy" | "Rain" | "Thunderstorm" | "Haze" | "Pleasant";
+  icon: string;
+}
+
+export type PrefKey =
+  | "window_seat"
+  | "aisle_seat"
+  | "veg"
+  | "jain"
+  | "non_veg"
+  | "stars_4"
+  | "stars_5"
+  | "budget_stay"
+  | "non_stop"
+  | "morning_flight"
+  | "evening_flight"
+  | "pool"
+  | "breakfast"
+  | "family"
+  | "wheelchair";
+
+export interface Pref {
+  key: PrefKey;
+  label: string;
+}
+
+export type LlmProvider = "claude" | "openai" | "demo";
+
 /** Events streamed from /api/chat as NDJSON lines. */
 export type ChatEvent =
+  | { type: "meta"; provider: LlmProvider; lang: LangId }
   | { type: "text"; delta: string }
   | { type: "expression"; value: Expression }
   | { type: "tool"; name: string; status: "start" | "done" | "error"; data?: unknown }
   | { type: "state"; itineraryId: string | null; bookingId: string | null }
+  | { type: "memory"; prefs: Pref[]; budgetINR: number | null }
+  | { type: "action"; action: PendingAction }
   | { type: "error"; message: string }
   | { type: "done" };

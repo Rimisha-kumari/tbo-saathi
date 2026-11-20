@@ -2,16 +2,16 @@
 
 # TBO Saathi — Agentic Multilingual AI Travel Consultant
 
-Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · `@anthropic-ai/sdk` · `zod`.
+Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · `@anthropic-ai/sdk` · `zod` · `three` + `@react-three/fiber` + `@react-three/drei` · `qrcode`.
 This Next.js version has breaking changes. Read `node_modules/next/dist/docs/` before writing route handlers or config.
 
 ## Guardrails (non-negotiable)
 
 1. **One repo, no separate backend.** All server logic lives in App Router route handlers (`/api/chat`, `/api/travel`, `/api/speech`). Mock data is static JSON plus an in-memory store. There is no database.
-2. **2D avatar only.** Draw a custom SVG avatar in React and animate it with CSS and `requestAnimationFrame`. No `.vrm`, Three.js, WebGL or binary model assets.
-   - Expressions: `idle | listening | thinking | speaking | concerned`.
-   - Lip-sync: drive mouth visemes from `SpeechSynthesisUtterance` `boundary` events, with a text-timing fallback. When an audio stream is playing (Sarvam/Bhashini), drive them from `AnalyserNode` amplitude instead.
-3. **Zero-key speech by default.** Use the browser Web Speech API (`SpeechRecognition`/`webkitSpeechRecognition` and `speechSynthesis`). Locales: `en-IN`, `hi-IN`, `ta-IN`, `te-IN`, `bn-IN`. Sarvam AI and Bhashini are optional providers that turn on only when their env keys are set. The UI must work with no keys at all.
+2. **Self-contained avatar, 3D by default with a 2D fallback.** `Avatar3D.tsx` is a procedural Three.js character (`@react-three/fiber` + `drei`). It uses no `.vrm`, GLTF, HDR or other binary or network assets. Load it only through `next/dynamic` with `{ ssr: false }` from a client component (`AvatarStage.tsx`). The 2D SVG avatar (`Avatar.tsx`) is the fallback: the 3D/2D toggle pill, no WebGL, or a render error switches to it.
+   - Expressions: `idle | listening | thinking | speaking | concerned`, shown through face pose and aura/rim-light colour (`expressions.ts`).
+   - Lip-sync: one `LipSync` driver feeds both avatars. It uses `SpeechSynthesisUtterance` `boundary` events with a text-timing fallback, and `AnalyserNode` amplitude when Sarvam/Bhashini audio plays.
+3. **Zero-key speech and AI by default.** Use the browser Web Speech API (`SpeechRecognition`/`webkitSpeechRecognition` and `speechSynthesis`). Languages (`lib/lang.ts`): `en`, `hi`, `hinglish`, `ta`, `te`, `bn`, each mapped to a TTS locale, an STT locale and a reply instruction. Voices are picked only after `voiceschanged`, and only from the language's own locale. Sarvam AI and Bhashini are optional and turn on only when their env keys are set. With no LLM key, the Smart Demo brain answers. The UI must work with no keys at all.
 4. Keep files small and modular. Validate every request body and tool input with zod. Never expose API keys to the client.
 
 ## Folder structure
@@ -20,24 +20,27 @@ This Next.js version has breaking changes. Read `node_modules/next/dist/docs/` b
 src/
   app/
     page.tsx                 # renders <Consultant/>
-    api/chat/route.ts        # agent endpoint, streams NDJSON ChatEvents (see types.ts)
-    api/travel/route.ts      # read-only REST over mock data (?op=flights|hotels|availability|itinerary|booking|extras)
+    api/chat/route.ts        # agent endpoint, streams NDJSON ChatEvents (see types.ts); GET = active provider
+    api/travel/route.ts      # GET mock data (?op=flights|hotels|availability|itinerary|booking|bookings|weather|extras); POST = confirmation gate
     api/speech/route.ts      # GET active provider; POST TTS via Sarvam/Bhashini (204 = use browser voice)
   components/
-    Consultant.tsx           # main screen: avatar column + chat column
-    avatar/                  # Avatar.tsx (SVG + rAF), useLipSync.ts (LipSync class), expressions.ts (poses)
-    chat/                    # ChatPanel, MessageBubble, Cards (flights, hotels, itinerary, booking/vouchers, disruption)
+    Consultant.tsx           # split screen: top bar + memory bar, avatar/chat (left), workspace tabs (right)
+    TopBar.tsx, MemoryBar.tsx
+    avatar/                  # AvatarStage (3D/2D toggle, dynamic ssr:false), Avatar3D, Avatar (2D SVG), useLipSync, expressions
+    chat/                    # ChatPanel, ConfirmCard (Confirm ✅ / Edit ✏️ gate), DisruptionCard, DemoBar
+    workspace/               # Workspace tabs: CompareTab, ItineraryTab (weather, budget meter, B2B pricing), BookingsTab, ClientItinerary
     voice/                   # MicButton, LanguagePicker
   lib/
-    agent/                   # tools.ts (zod → strict schemas), handlers.ts, prompt.ts, claude.ts (loop), offline.ts (keyless rules agent)
-    travel/                  # store.ts, flights.ts, hotels.ts, inventory.ts (pricing/availability), itinerary.ts, booking.ts, disruption.ts
+    lang.ts                  # LangId ↔ locales, detectLang() (script + Hinglish vocabulary)
+    agent/                   # tools.ts, handlers.ts, prompt.ts, memory.ts (prefs/budget extraction), claude.ts, openai.ts, demo/ (brain.ts, phrases.ts)
+    travel/                  # store, flights, hotels, inventory (pricing), itinerary, planner (planTrip/adjustTrip), booking, actions (gate), disruption, weather
     speech/                  # webSpeech.ts + index.ts (client facade); server/ (provider.ts, sarvam.ts, bhashini.ts)
-    client/                  # useChat.ts (NDJSON stream → UI state), i18n.ts (UI strings per locale)
-    types.ts                 # shared domain types
+    client/                  # useChat.ts, useWorkspace.ts, i18n.ts (UI strings, 6 languages), voucherDoc.ts (QR vouchers, download/print)
+    types.ts, hash.ts
   data/                      # flights.json, hotels.json, transfers.json, sightseeing.json (generated mock data)
 ```
 
-If `ANTHROPIC_API_KEY` is unset, `/api/chat` uses `offline.ts`, a rule-based agent that calls the same tool handlers, so the demo works with zero keys. Its replies are English with a short localised greeting.
+Provider order: `ANTHROPIC_API_KEY` → Claude; otherwise `OPENAI_API_KEY` → OpenAI (also used when Claude fails before any text streams); otherwise **Smart Demo Mode** (`agent/demo/brain.ts`). The demo brain is rule-based and multi-turn, replies natively in all six languages from `phrases.ts`, and drives the same tool handlers.
 
 `store.ts` holds itineraries, bookings and vouchers in a module-level `Map`, seeded from `data/`. It resets on server restart, and that is intended.
 
@@ -69,16 +72,24 @@ Disruption  { type: "flight_delay"|"flight_cancel"|"hotel_overbooked"|"weather",
 
 ## LLM tools (`src/lib/agent/tools.ts`)
 
-Each tool is built from a zod schema (`z.toJSONSchema`) into an `Anthropic.Beta.BetaTool` with `strict: true` and `additionalProperties: false`, and every key listed under `required`. Optional fields use `["type","null"]`. Strict schemas can't carry numeric bounds or string formats, so services enforce those. The server prices every itinerary item itself; any `priceINR` sent by the model is ignored. Handlers re-validate their input with zod and return JSON. On failure they return a `tool_result` with `is_error: true`.
+Ten tools. Each is built from a zod schema (`z.toJSONSchema`) into an `Anthropic.Beta.BetaTool` with `strict: true` and `additionalProperties: false`, and every key listed under `required`. Optional fields use `["type","null"]`. Strict schemas can't carry numeric bounds or string formats, so services enforce those. The server prices every itinerary item itself; any `priceINR` sent by the model is ignored. Handlers re-validate their input with zod and return JSON. On failure they return a `tool_result` with `is_error: true`.
 
 | Tool | Input | Returns |
 |---|---|---|
-| `searchFlights` | `from, to, date, returnDate?, adults, cabin?, maxStops?, sortBy?("price"\|"duration"\|"depart")` | `Flight[]` (top 5) |
+| `planTrip` | `origin, destination, departDate, nights, adults, children, budgetINR?` | New itinerary (flights both ways, hotel, airport cabs, sightseeing, fitted to budget/prefs) plus top-3 alternatives |
+| `adjustTrip` | `itineraryId, action("cheaper"\|"add_day"\|"remove_day"\|"upgrade_hotel")` | `{ itinerary, deltaINR, changes[] }` |
+| `searchFlights` | `from, to, date, returnDate?, adults, cabin?, maxStops?, sortBy?` | `Flight[]` (top 5) |
 | `searchHotels` | `city, checkIn, checkOut, guests, minStars?, maxPriceINR?, area?, amenities?` | `Hotel[]` (top 5) |
-| `checkAvailability` | `kind("flight"\|"hotel"\|"transfer"\|"sightseeing"), refId, date, pax, roomCode?` | `{ available, priceINR, seatsOrRoomsLeft, holdExpiresAt? }` |
-| `updateItinerary` | `itineraryId?, action("add"\|"remove"\|"replace"), item: ItineraryItem, replaceRefId?` | `Itinerary` (recomputed `totalINR`) |
-| `bookTrip` | `itineraryId, leadGuest{name,phone,email}, confirm: boolean` | `Booking` with `Voucher[]`. It refuses unless `confirm === true` **and** the user confirmed explicitly in the chat. |
-| `handleDisruption` | `bookingId, disruption: Disruption` | `{ impact, options: { label, itineraryPatch, priceDeltaINR }[] }`. The avatar switches to `concerned`. |
+| `checkAvailability` | `kind, refId, date, pax, roomCode?` | `{ available, priceINR, seatsOrRoomsLeft, holdExpiresAt? }` |
+| `updateItinerary` | `itineraryId?, action("add"\|"remove"\|"replace"), item, replaceRefId?, travellers?` | `Itinerary` |
+| `bookTrip` | `itineraryId, leadGuest?` | **Prepares** a `PendingAction` (book/amend). Nothing is booked yet. |
+| `cancelBooking` | `bookingId` | **Prepares** a cancellation with the refund breakdown |
+| `handleDisruption` | `bookingId, disruption` | `{ impact, options[] }`. Each option lists knock-on `changes` (new cab time, hotel check-in) and an `itineraryPatch`. The avatar switches to `concerned`. |
+| `applyDisruptionOption` | `bookingId, optionIndex` | **Prepares** the rescue rebooking |
+
+**Confirmation gate (`travel/actions.ts`).** The three "prepare" tools only create a pending action and stream it to the client as a summary card. A booking, payment, cancellation or rebooking runs only when the traveller clicks Confirm ✅, which sends `POST /api/travel {op:"confirm"}`. Edit ✏️ discards the action. Agents must never claim something is done before the traveller confirms.
+
+**Traveller memory (`agent/memory.ts`).** Preferences (window/aisle, veg/jain, 4★+/5★, non-stop, morning/evening, pool, breakfast…) and the budget are pulled from every message in all six languages. The client sends them back on each request, they appear as removable pills, and every recommendation applies them.
 
 ## Agent loop (`/api/chat`)
 
@@ -93,7 +104,8 @@ Each tool is built from a zod schema (`z.toJSONSchema`) into an `Anthropic.Beta.
 ## Env (`.env.local`, see `.env.example`)
 
 ```
-ANTHROPIC_API_KEY=            # required for /api/chat
+ANTHROPIC_API_KEY=            # optional: Live AI with Claude (preferred)
+OPENAI_API_KEY=               # optional: fallback Live AI (OPENAI_MODEL, default gpt-4o-mini)
 SPEECH_PROVIDER=webspeech     # webspeech | sarvam | bhashini
 SARVAM_API_KEY=               # optional
 BHASHINI_USER_ID=             # optional

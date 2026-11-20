@@ -37,7 +37,17 @@ export function priceItem(item: ItineraryItem): ItineraryItem {
       const f = getFlight(out.refId);
       if (!f) throw new Error(`Unknown flight ${item.refId}`);
       out.priceINR = f.fareINR * item.pax;
-      out.meta = { ...item.meta, flightNo: f.flightNo, route: `${f.from}→${f.to}`, departAt: f.departAt };
+      out.meta = {
+        ...item.meta,
+        flightNo: f.flightNo,
+        airline: f.airline,
+        route: `${f.from}→${f.to}`,
+        from: f.from,
+        to: f.to,
+        departAt: f.departAt,
+        arriveAt: f.arriveAt,
+        stops: f.stops,
+      };
       break;
     }
     case "hotel": {
@@ -48,24 +58,26 @@ export function priceItem(item: ItineraryItem): ItineraryItem {
       const checkOut = String(item.meta?.checkOut ?? addDays(item.date, 1));
       const n = nights(item.date, checkOut);
       out.priceINR = room.priceINR * n * Math.ceil(item.pax / room.maxGuests);
-      out.meta = { ...item.meta, roomCode: room.code, checkOut, nights: n, name: h.name, city: h.city };
+      out.meta = { ...item.meta, roomCode: room.code, roomName: room.name, checkOut, nights: n, name: h.name, city: h.city, stars: h.stars };
       break;
     }
     case "transfer": {
       const t = transfers.find((x) => x.id === item.refId);
       if (!t) throw new Error(`Unknown transfer ${item.refId}`);
       out.priceINR = t.priceINR * Math.ceil(item.pax / t.maxPax);
-      out.meta = { ...item.meta, name: `${t.city} ${t.type.replace("_", " ")} (${t.vehicle})` };
+      out.meta = { ...item.meta, name: `${t.city} ${t.type === "airport_pickup" ? "airport pickup" : t.type === "airport_drop" ? "airport drop" : "intercity cab"} (${t.vehicle})`, city: t.city, transferType: t.type };
       break;
     }
     case "sightseeing": {
       const s = sightseeing.find((x) => x.id === item.refId);
       if (!s) throw new Error(`Unknown activity ${item.refId}`);
       out.priceINR = s.priceINR * item.pax;
-      out.meta = { ...item.meta, name: s.title, slot: item.meta?.slot ?? s.slots[0] };
+      out.meta = { ...item.meta, name: s.title, city: s.city, slot: item.meta?.slot ?? s.slots[0], durationHrs: s.durationHrs };
       break;
     }
   }
+  // Disruption rescues can lock a price (e.g. airline waives the fare difference).
+  if (typeof item.meta?.lockedPriceINR === "number") out.priceINR = item.meta.lockedPriceINR;
   return out;
 }
 

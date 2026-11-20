@@ -1,0 +1,401 @@
+[
+ {
+  "id": "S001",
+  "city": "Delhi",
+  "title": "Old Delhi food walk",
+  "durationHrs": 2,
+  "priceINR": 3000,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "08:00",
+   "16:00"
+  ]
+ },
+ {
+  "id": "S002",
+  "city": "Delhi",
+  "title": "Qutub Minar & Mehrauli heritage tour",
+  "durationHrs": 6,
+  "priceINR": 2650,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S003",
+  "city": "Delhi",
+  "title": "Humayun's Tomb sunset visit",
+  "durationHrs": 4,
+  "priceINR": 1450,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S004",
+  "city": "Mumbai",
+  "title": "Gateway of India & Elephanta Caves",
+  "durationHrs": 4,
+  "priceINR": 3300,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S005",
+  "city": "Mumbai",
+  "title": "Dharavi community walk",
+  "durationHrs": 2,
+  "priceINR": 3850,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S006",
+  "city": "Mumbai",
+  "title": "Marine Drive evening ride",
+  "durationHrs": 3,
+  "priceINR": 3900,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S007",
+  "city": "Goa",
+  "title": "North Goa beach hopping",
+  "durationHrs": 4,
+  "priceINR": 1200,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S008",
+  "city": "Goa",
+  "title": "Old Goa churches tour",
+  "durationHrs": 4,
+  "priceINR": 2550,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S009",
+  "city": "Goa",
+  "title": "Mandovi river sunset cruise",
+  "durationHrs": 2,
+  "priceINR": 950,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S010",
+  "city": "Bengaluru",
+  "title": "Lalbagh & Cubbon Park walk",
+  "durationHrs": 2,
+  "priceINR": 3400,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S011",
+  "city": "Bengaluru",
+  "title": "Mysuru day trip",
+  "durationHrs": 3,
+  "priceINR": 2850,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "08:00",
+   "16:00"
+  ]
+ },
+ {
+  "id": "S012",
+  "city": "Bengaluru",
+  "title": "Craft brewery trail",
+  "durationHrs": 6,
+  "priceINR": 3600,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S013",
+  "city": "Chennai",
+  "title": "Mahabalipuram shore temples",
+  "durationHrs": 6,
+  "priceINR": 1500,
+  "languages": [
+   "en",
+   "hi",
+   "ta"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S014",
+  "city": "Chennai",
+  "title": "Mylapore temple & food walk",
+  "durationHrs": 8,
+  "priceINR": 3450,
+  "languages": [
+   "en",
+   "hi",
+   "ta"
+  ],
+  "slots": [
+   "08:00",
+   "16:00"
+  ]
+ },
+ {
+  "id": "S015",
+  "city": "Chennai",
+  "title": "Marina beach sunrise",
+  "durationHrs": 6,
+  "priceINR": 1100,
+  "languages": [
+   "en",
+   "hi",
+   "ta"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S016",
+  "city": "Hyderabad",
+  "title": "Charminar & Laad Bazaar walk",
+  "durationHrs": 2,
+  "priceINR": 2000,
+  "languages": [
+   "en",
+   "hi",
+   "te"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S017",
+  "city": "Hyderabad",
+  "title": "Golconda Fort light show",
+  "durationHrs": 4,
+  "priceINR": 2550,
+  "languages": [
+   "en",
+   "hi",
+   "te"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S018",
+  "city": "Hyderabad",
+  "title": "Biryani trail",
+  "durationHrs": 8,
+  "priceINR": 3750,
+  "languages": [
+   "en",
+   "hi",
+   "te"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S019",
+  "city": "Kolkata",
+  "title": "Victoria Memorial & Maidan",
+  "durationHrs": 6,
+  "priceINR": 3400,
+  "languages": [
+   "en",
+   "hi",
+   "bn"
+  ],
+  "slots": [
+   "08:00",
+   "16:00"
+  ]
+ },
+ {
+  "id": "S020",
+  "city": "Kolkata",
+  "title": "Kumartuli artisans walk",
+  "durationHrs": 3,
+  "priceINR": 3200,
+  "languages": [
+   "en",
+   "hi",
+   "bn"
+  ],
+  "slots": [
+   "08:00",
+   "16:00"
+  ]
+ },
+ {
+  "id": "S021",
+  "city": "Kolkata",
+  "title": "Hooghly heritage boat ride",
+  "durationHrs": 4,
+  "priceINR": 3700,
+  "languages": [
+   "en",
+   "hi",
+   "bn"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S022",
+  "city": "Jaipur",
+  "title": "Amer Fort & stepwell tour",
+  "durationHrs": 6,
+  "priceINR": 2800,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S023",
+  "city": "Jaipur",
+  "title": "Hawa Mahal & City Palace",
+  "durationHrs": 3,
+  "priceINR": 1100,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S024",
+  "city": "Jaipur",
+  "title": "Rajasthani dinner at a village",
+  "durationHrs": 6,
+  "priceINR": 1000,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "09:00",
+   "14:00"
+  ]
+ },
+ {
+  "id": "S025",
+  "city": "Kochi",
+  "title": "Fort Kochi heritage walk",
+  "durationHrs": 3,
+  "priceINR": 3450,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "17:00"
+  ]
+ },
+ {
+  "id": "S026",
+  "city": "Kochi",
+  "title": "Alleppey backwater houseboat day",
+  "durationHrs": 6,
+  "priceINR": 1600,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ },
+ {
+  "id": "S027",
+  "city": "Kochi",
+  "title": "Kathakali performance",
+  "durationHrs": 4,
+  "priceINR": 1300,
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "slots": [
+   "10:00"
+  ]
+ }
+]

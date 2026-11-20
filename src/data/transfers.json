@@ -1,0 +1,290 @@
+[
+ {
+  "id": "T001",
+  "city": "Delhi",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 1050,
+  "maxPax": 3
+ },
+ {
+  "id": "T002",
+  "city": "Delhi",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1500,
+  "maxPax": 6
+ },
+ {
+  "id": "T003",
+  "city": "Delhi",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 900,
+  "maxPax": 3
+ },
+ {
+  "id": "T004",
+  "city": "Delhi",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2600,
+  "maxPax": 12
+ },
+ {
+  "id": "T005",
+  "city": "Mumbai",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 1100,
+  "maxPax": 3
+ },
+ {
+  "id": "T006",
+  "city": "Mumbai",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1700,
+  "maxPax": 6
+ },
+ {
+  "id": "T007",
+  "city": "Mumbai",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 950,
+  "maxPax": 3
+ },
+ {
+  "id": "T008",
+  "city": "Mumbai",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2600,
+  "maxPax": 12
+ },
+ {
+  "id": "T009",
+  "city": "Goa",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 900,
+  "maxPax": 3
+ },
+ {
+  "id": "T010",
+  "city": "Goa",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1550,
+  "maxPax": 6
+ },
+ {
+  "id": "T011",
+  "city": "Goa",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 1050,
+  "maxPax": 3
+ },
+ {
+  "id": "T012",
+  "city": "Goa",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2600,
+  "maxPax": 12
+ },
+ {
+  "id": "T013",
+  "city": "Bengaluru",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 900,
+  "maxPax": 3
+ },
+ {
+  "id": "T014",
+  "city": "Bengaluru",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1600,
+  "maxPax": 6
+ },
+ {
+  "id": "T015",
+  "city": "Bengaluru",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 1000,
+  "maxPax": 3
+ },
+ {
+  "id": "T016",
+  "city": "Bengaluru",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2650,
+  "maxPax": 12
+ },
+ {
+  "id": "T017",
+  "city": "Chennai",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 1000,
+  "maxPax": 3
+ },
+ {
+  "id": "T018",
+  "city": "Chennai",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1550,
+  "maxPax": 6
+ },
+ {
+  "id": "T019",
+  "city": "Chennai",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 1000,
+  "maxPax": 3
+ },
+ {
+  "id": "T020",
+  "city": "Chennai",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2700,
+  "maxPax": 12
+ },
+ {
+  "id": "T021",
+  "city": "Hyderabad",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 1000,
+  "maxPax": 3
+ },
+ {
+  "id": "T022",
+  "city": "Hyderabad",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1600,
+  "maxPax": 6
+ },
+ {
+  "id": "T023",
+  "city": "Hyderabad",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 1050,
+  "maxPax": 3
+ },
+ {
+  "id": "T024",
+  "city": "Hyderabad",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2700,
+  "maxPax": 12
+ },
+ {
+  "id": "T025",
+  "city": "Kolkata",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 950,
+  "maxPax": 3
+ },
+ {
+  "id": "T026",
+  "city": "Kolkata",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1600,
+  "maxPax": 6
+ },
+ {
+  "id": "T027",
+  "city": "Kolkata",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 950,
+  "maxPax": 3
+ },
+ {
+  "id": "T028",
+  "city": "Kolkata",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2750,
+  "maxPax": 12
+ },
+ {
+  "id": "T029",
+  "city": "Jaipur",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 950,
+  "maxPax": 3
+ },
+ {
+  "id": "T030",
+  "city": "Jaipur",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1600,
+  "maxPax": 6
+ },
+ {
+  "id": "T031",
+  "city": "Jaipur",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 900,
+  "maxPax": 3
+ },
+ {
+  "id": "T032",
+  "city": "Jaipur",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2650,
+  "maxPax": 12
+ },
+ {
+  "id": "T033",
+  "city": "Kochi",
+  "type": "airport_pickup",
+  "vehicle": "sedan",
+  "priceINR": 950,
+  "maxPax": 3
+ },
+ {
+  "id": "T034",
+  "city": "Kochi",
+  "type": "airport_pickup",
+  "vehicle": "suv",
+  "priceINR": 1600,
+  "maxPax": 6
+ },
+ {
+  "id": "T035",
+  "city": "Kochi",
+  "type": "airport_drop",
+  "vehicle": "sedan",
+  "priceINR": 900,
+  "maxPax": 3
+ },
+ {
+  "id": "T036",
+  "city": "Kochi",
+  "type": "airport_drop",
+  "vehicle": "tempo",
+  "priceINR": 2600,
+  "maxPax": 12
+ }
+]
